@@ -265,7 +265,7 @@ void onRadioRecv(void)
     lqi = radioGetLastLQI();
 
 #ifdef PRINT_PACKETS
-    PRINTF("%ld\t%d\t%d\t%d\t%d\t",(long)rxTime, (int)rxIdx, (int)rxLen, (int)rssi, (int)lqi);
+    PRINTF("%ld\t%d\t%d\t%d\t%d\t\n",(long)rxTime, (int)rxIdx, (int)rxLen, (int)rssi, (int)lqi);
 #endif
 #ifdef PRINT_PACKETS
     if (rxLen < 0) {
