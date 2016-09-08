@@ -61,7 +61,7 @@ experiment_t * curExp = NULL;
 
 int lastExpIdx=0;
 
-int rxIdx=0;
+uint32_t rxIdx=0;
 
 static bool flRestart=true;
 
@@ -265,7 +265,7 @@ void onRadioRecv(void)
     lqi = radioGetLastLQI();
 
 #ifdef PRINT_PACKETS
-    PRINTF("%ld\t%d\t%d\t%d\t\n",(long)rxTime, (int)rxIdx, (int)rssi, (int)lqi);
+    PRINTF("%ld\t%ld\t%d\t%d\t\n",(long)rxTime, (long)rxIdx, (int)rssi, (int)lqi);
 #endif
 #ifdef PRINT_PACKETS
     if (rxLen < 0) {
