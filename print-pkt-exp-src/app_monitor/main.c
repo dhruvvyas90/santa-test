@@ -265,14 +265,14 @@ void onRadioRecv(void)
     lqi = radioGetLastLQI();
 
 #ifdef PRINT_PACKETS
-    PRINTF("%d\t%d\t%d\t%d\t%ld\t", (int)rxIdx, (int)rxLen, (int)rssi, (int)lqi, (long)rxTime);
+    PRINTF("%ld\t%d\t%d\t%d\t%d\t",(long)rxTime, (int)rxIdx, (int)rxLen, (int)rssi, (int)lqi);
 #endif
 #ifdef PRINT_PACKETS
     if (rxLen < 0) {
         PRINTF("RX failed\n");
     }
     else if (rxLen > 0 ) {
-        debugHexdump((uint8_t *) &radioBuffer, rxLen);
+        //debugHexdump((uint8_t *) &radioBuffer, rxLen);
         // debugHexdump((uint8_t *) &(DB_REC(db)), rxLen);
     }
 #endif
