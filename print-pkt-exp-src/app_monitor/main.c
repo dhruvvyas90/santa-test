@@ -131,7 +131,7 @@ void sendTestResults()
             // "\t%d\t%d\t%d\t%d\t%ld"
             // "\t%d\t%d\t%d\t%d\t%ld"
             "\t%d\t%d\t%d"
-            "\t%ld\t%ld\t%dld\t"
+            "\t%ld\t%ld\t%ld\t"
             "\n",
             (int) lastExpIdx,
 
