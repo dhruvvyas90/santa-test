@@ -151,7 +151,7 @@ void sendTestResults()
             (int) lqi_mean,
 
             (long unsigned int) (rssi_devSq),
-            (long unsigned int) (lqi_devSq)
+            (long unsigned int) (lqi_devSq),
             (long) packet_count
             )
         // debugHexdump((uint8_t *) exp, sizeof(experiment_t));
