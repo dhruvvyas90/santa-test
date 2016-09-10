@@ -11,7 +11,7 @@
 #include "../db_framework.h"
 
 // Comment below for less output
-#define PRINT_PACKETS 1
+//#define PRINT_PACKETS 1
 
 
 #define RATE_DELAY 200
@@ -64,6 +64,8 @@ int lastExpIdx=0;
 uint32_t rxIdx=0;
 
 static bool flRestart=true;
+
+uint32_t packet_count = 0;
 
 
 // Prototypes
@@ -129,7 +131,7 @@ void sendTestResults()
             // "\t%d\t%d\t%d\t%d\t%ld"
             // "\t%d\t%d\t%d\t%d\t%ld"
             "\t%d\t%d\t%d"
-            "\t%ld\t%ld"
+            "\t%ld\t%ld\t%dld\t"
             "\n",
             (int) lastExpIdx,
 
@@ -150,6 +152,7 @@ void sendTestResults()
 
             (long unsigned int) (rssi_devSq),
             (long unsigned int) (lqi_devSq)
+            (long) packet_count
             )
         // debugHexdump((uint8_t *) exp, sizeof(experiment_t));
 
@@ -157,6 +160,7 @@ void sendTestResults()
         exp->power = 0;
         exp->angle = 0;
         exp->phase = 0;
+        packet_count = 0;
         STREAM_STAT_INIT(exp->rssi_data);
         STREAM_STAT_INIT(exp->lqi_data);
     }
@@ -267,6 +271,11 @@ void onRadioRecv(void)
 #ifdef PRINT_PACKETS
     PRINTF("%ld\t%ld\t%d\t%d\t\n",(long)rxTime, (long)rxIdx, (int)rssi, (int)lqi);
 #endif
+	//rxTime = getTimeMs();
+	//PRINTF("Begin time : %ld\n",(long)rxTime);
+	//rxTime = getTimeMs();
+	//PRINTF("End time : %ld\n",(long)rxTime);
+
 #ifdef PRINT_PACKETS
     if (rxLen < 0) {
         PRINTF("RX failed\n");
@@ -304,7 +313,11 @@ void onRadioRecv(void)
         if(lastExpIdx != test_data_p->expIdx && curExp){
             sendTestResults();
         }
-        processTestMsg(test_data_p, rssi, lqi);
+        packet_count++;
+#ifdef PRINT_PACKETS
+	PRINTF("%ld\t%ld\t%d\t%ld\t%d\t%d\t\n",(long)rxTime, (long) test_data_p->timestamp, (int)test_data_p->msgCounter, (long)rxIdx, (int)rssi, (int)lqi);
+#endif
+	      processTestMsg(test_data_p, rssi, lqi);
         break;
 
     case PH_MSG_Angle:
