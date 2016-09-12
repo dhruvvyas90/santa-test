@@ -266,7 +266,7 @@ void onRadioRecv(void)
         return;
     }
     flRxProcessing=true;    // There is a chance for a small race condition
-    rxTime = getTimeMs();
+    uint32_t rxTime = getTimeMs();
 // #ifdef PRINT_PACKETS
 //     rxTime = getTimeMs();
 // #endif
