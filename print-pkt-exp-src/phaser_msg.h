@@ -1,9 +1,9 @@
-/* 
+/*
  * Phaser Message protocol
  *
  *
  */
-  
+
 #ifndef _phaser_msg_h_
 #define _phaser_msg_h_
 
@@ -25,6 +25,7 @@ enum {
     PH_MSG_Config = 'G',
     PH_MSG_Test = 'T',      // Test message, like ping, but with configuration
     PH_MSG_Text = 'X',
+    PH_MSG_Done = 'D',
 };
 
 
@@ -67,11 +68,11 @@ typedef struct
 
 
 // Phase test setup
-typedef struct 
+typedef struct
 {
-    uint8_t start;    
-    uint8_t step;    
-    uint16_t count;    
+    uint8_t start;
+    uint8_t step;
+    uint16_t count;
 } iter8_config_t;
 
 
@@ -102,7 +103,7 @@ typedef struct
 //--------------------------------------------
 // Antenna state variables, union by platform
 // This defines the state and is updated during the each test run
-typedef union 
+typedef union
 {
     struct {
         uint16_t i16;
@@ -123,7 +124,7 @@ typedef union
 
 // Antena configuration parameters, union by platform
 // These define the test parameters, limits, iteration count, etc.
-typedef union 
+typedef union
 {
     struct {        // Phaser
         iter8_config_t phaseA;
@@ -141,9 +142,9 @@ typedef union
 
 
 // Test run setup
-typedef struct 
+typedef struct
 {
-    uint8_t platform_id;    
+    uint8_t platform_id;
     uint16_t start_delay;    // delay before the test starts in ms
     uint16_t send_count;    // Number of experiments per each configuration
     uint16_t send_delay;    // delay between test message sends in ms
@@ -158,7 +159,7 @@ typedef struct
 // Messages
 //===========================================
 
-typedef struct 
+typedef struct
 {
     msg_timestamp_t timestamp;
     uint16_t msgCounter;
@@ -171,21 +172,27 @@ typedef struct
 
     uint8_t power;       // cc2420: 0(min) - 31(max)
 
-} __attribute__((packed)) 
+} __attribute__((packed))
 phaser_ping_t;
 // phaser_config_t;
 
 typedef struct
 {
+  uint8_t done;
+} __attribute__((packed))
+phaser_done_t;
+
+typedef struct
+{
     angle_t angle;
     msg_action_t action;
-} __attribute__((packed)) 
+} __attribute__((packed))
 phaser_angle_t;
 
 typedef struct
 {
     msg_action_t action;
-} __attribute__((packed)) 
+} __attribute__((packed))
 phaser_control_t;
 
 
@@ -196,7 +203,7 @@ phaser_control_t;
 STREAM_STAT_DECLARE(rssi_data_t, int32_t);
 STREAM_STAT_DECLARE(lqi_data_t, int32_t);
 
-typedef struct 
+typedef struct
 {
     // int expIdx;
     tx_power_t power;

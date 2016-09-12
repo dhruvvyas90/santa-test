@@ -15,6 +15,7 @@
 
 
 #define RATE_DELAY 200
+#define MAX_NO_PACKETS_IN_TEST 150
 
 // Phaser control message(s)
 MSG_NEW_WITH_ID(ctrl_msg, phaser_control_t, PH_MSG_Control);
@@ -23,6 +24,14 @@ phaser_control_t *ctrl_data_p = &(ctrl_msg.payload);
 // Define a buffer for receiving messages
 MSG_DEFINE_BUFFER_WITH_ID(radioBuffer, recv_data_p, RADIO_MAX_PACKET);
 
+// define arrays for serial Dump
+
+uint32_t SrxTime[MAX_NO_PACKETS_IN_TEST];
+uint32_t Stimestamp[MAX_NO_PACKETS_IN_TEST];
+uint16_t SmsgCount[MAX_NO_PACKETS_IN_TEST];
+uint32_t SrxIdx[MAX_NO_PACKETS_IN_TEST];
+int Srssi[MAX_NO_PACKETS_IN_TEST];
+int Slqi[MAX_NO_PACKETS_IN_TEST];
 
 // --------------------------------------------
 
@@ -235,6 +244,15 @@ void print_test_config(test_config_t *test_config)
     PRINTF("\n");
 }
 
+void print_serial_dump()
+{
+  int i;
+  for(i=0;i<packet_count;i++)
+  {
+    PRINTF("%ld\t%ld\t%d\t%ld\t%d\t%d\t\n",(long)SrxTime[i], (long)Stimestamp[i], (int)SmsgCount[i], (long)SrxIdx[i], (int)Srssi[i], (int)Slqi[i]);
+  }
+}
+
 
 // --------------------------------------------
 // --------------------------------------------
@@ -313,9 +331,15 @@ void onRadioRecv(void)
         if(lastExpIdx != test_data_p->expIdx && curExp){
             sendTestResults();
         }
+        SrxTime[packet_count] = rxTime;
+        Stimestamp[packet_count] = test_data_p->timestamp;
+        SmsgCount[packet_count] = test_data_p->msgCounter;
+        SrxIdx[packet_count] = rxIdx;
+        Srssi[packet_count] = rssi;
+        Slqi[packet_count] = lqi;
         packet_count++;
 #ifdef PRINT_PACKETS
-	PRINTF("%ld\t%ld\t%d\t%ld\t%d\t%d\t\n",(long)rxTime, (long) test_data_p->timestamp, (int)test_data_p->msgCounter, (long)rxIdx, (int)rssi, (int)lqi);
+	      PRINTF("%ld\t%ld\t%d\t%ld\t%d\t%d\t\n",(long)rxTime, (long) test_data_p->timestamp, (int)test_data_p->msgCounter, (long)rxIdx, (int)rssi, (int)lqi);
 #endif
 	      processTestMsg(test_data_p, rssi, lqi);
         break;
@@ -350,6 +374,14 @@ void onRadioRecv(void)
         PRINTF("Config received:\n");
         // TODO: parse the config and print
         print_test_config(test_config_p);
+
+    case PH_MSG_Done:
+        MSG_CHECK_FOR_PAYLOAD(radioBuffer, phaser_done_t, break );
+        PRINTF("Done received");
+        print_serial_dump();
+        // TODO: Dump all the raw packet data on serial
+
+
     }
 
 
