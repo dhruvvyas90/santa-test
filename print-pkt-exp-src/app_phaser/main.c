@@ -58,7 +58,7 @@ MSG_NEW_WITH_ID(config_msg, test_config_t, PH_MSG_Config);
 MSG_NEW_WITH_ID(text_msg, msg_text_data_t, PH_MSG_Text);
 
 // Phaser done msg
-MSG_NEW_WITH_ID(done_msg, phaser_done_t, PH_MSG_DONE);
+MSG_NEW_WITH_ID(done_msg, phaser_done_t, PH_MSG_Done);
 
 
 
