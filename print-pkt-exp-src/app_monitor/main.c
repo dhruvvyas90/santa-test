@@ -76,7 +76,7 @@ static bool flRestart=true;
 
 uint32_t packet_count = 0;
 
-
+uint8_t fl_MsgDone = 1;
 // Prototypes
 void send_ctrl_msg(msg_action_t act);
 
@@ -259,6 +259,7 @@ void print_serial_dump()
 void onRadioRecv(void)
 {
     static bool flRxProcessing=false;
+
     if(flRxProcessing){
 #ifdef PRINT_PACKETS
         PRINTF("RX Locked\n");
@@ -376,9 +377,14 @@ void onRadioRecv(void)
         print_test_config(test_config_p);
 
     case PH_MSG_Done:
-        MSG_CHECK_FOR_PAYLOAD(radioBuffer, phaser_done_t, break );
-        PRINTF("Done received");
-        print_serial_dump();
+        if(fl_MsgDone)
+        {
+          fl_MsgDone = 0;
+          MSG_CHECK_FOR_PAYLOAD(radioBuffer, phaser_done_t, break );
+          PRINTF("Done received");
+          print_serial_dump();
+          fl_MsgDone = 1;
+        }
         // TODO: Dump all the raw packet data on serial
 
 
