@@ -380,8 +380,8 @@ void onRadioRecv(void)
         if(fl_MsgDone)
         {
           fl_MsgDone = 0;
-          MSG_CHECK_FOR_PAYLOAD(radioBuffer, phaser_done_t, break );
-          PRINTF("Done received");
+          MSG_CHECK_FOR_PAYLOAD(radioBuffer, phaser_done_t, break);
+          //PRINTF("Done received");
           print_serial_dump();
           fl_MsgDone = 1;
         }
