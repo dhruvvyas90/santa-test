@@ -375,6 +375,7 @@ void onRadioRecv(void)
         PRINTF("Config received:\n");
         // TODO: parse the config and print
         print_test_config(test_config_p);
+        break;
 
     case PH_MSG_Done:
         if(fl_MsgDone)
@@ -385,6 +386,7 @@ void onRadioRecv(void)
           print_serial_dump();
           fl_MsgDone = 1;
         }
+        break;
         // TODO: Dump all the raw packet data on serial
 
 
