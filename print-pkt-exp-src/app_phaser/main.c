@@ -169,11 +169,11 @@ void send_done_msg(uint8_t done)
     // Send 3 times for reliability.
     radioSetTxPower(RADIO_MAX_TX_POWER);
     mdelay(20);
-    for(i=0; i<3; i++){
+    //for(i=0; i<3; i++){
         MSG_RADIO_SEND(done_msg);
-        mdelay(20);
-    }
-    mdelay(500);
+    //    mdelay(20);
+    //}
+    mdelay(1000);
 }
 
 // -------------------------------------------------------------------------
