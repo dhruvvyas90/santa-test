@@ -134,37 +134,8 @@ void sendTestResults()
         rssi_devSq = STREAM_STAT_DEVIATION_SQUARED(exp->rssi_data);
         lqi_mean = STREAM_STAT_MEAN(exp->lqi_data);
         lqi_devSq = STREAM_STAT_DEVIATION_SQUARED(exp->lqi_data);
-        PRINTF("Test:"
-            "\t%d"
-            "\t%d\t%d\t%d"
-            // "\t%d\t%d\t%d\t%d\t%ld"
-            // "\t%d\t%d\t%d\t%d\t%ld"
-            "\t%d\t%d\t%d"
-            "\t%ld\t%ld\t%ld\t"
-            "\n",
-            (int) lastExpIdx,
-
-            (int) exp->power,
-            (int) exp->angle,
-            (int) exp->phase,
-
-            // (int) exp->rssi_data.sum,
-            // (int) exp->rssi_data.sum_squares,
-
-            // (int) exp->lqi_data.num,
-            // (int) exp->lqi_data.sum,
-            // (int) exp->lqi_data.sum_squares,
-
-            (int) exp->rssi_data.num,
-            (int) rssi_mean,
-            (int) lqi_mean,
-
-            (long unsigned int) (rssi_devSq),
-            (long unsigned int) (lqi_devSq),
-            (long) packet_count
-            )
+        PRINTF("Test:\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%ld\t%ld\t%ld\t\n",(int) lastExpIdx,(int) exp->power,(int) exp->angle,(int) exp->phase,(int) exp->rssi_data.num,(int) rssi_mean,(int) lqi_mean,(long unsigned int) (rssi_devSq),(long unsigned int)(lqi_devSq),(long) packet_count);
         // debugHexdump((uint8_t *) exp, sizeof(experiment_t));
-
         // Clear data
         exp->power = 0;
         exp->angle = 0;
