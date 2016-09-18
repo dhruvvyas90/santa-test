@@ -320,7 +320,6 @@ void onRadioRecv(void)
 
     int act = MSG_ACT_CLEAR;
     bool flOK=true;
-
     switch( radioBuffer.id ){
     case PH_MSG_Test:
         MSG_CHECK_FOR_PAYLOAD(radioBuffer, phaser_ping_t, flOK=false );
@@ -330,7 +329,7 @@ void onRadioRecv(void)
         }
         // Check if new experiment iteration started.
         if(lastExpIdx != test_data_p->expIdx && curExp){
-            sendTestResults();
+            //sendTestResults();
         }
         SrxTime[packet_count] = rxTime;
         Stimestamp[packet_count] = test_data_p->timestamp;
@@ -346,7 +345,7 @@ void onRadioRecv(void)
         break;
 
     case PH_MSG_Angle:
-        if(curExp) sendTestResults();
+        //if(curExp) sendTestResults();
         if( flRestart ){        // Best time to resend the restart message after the angle change
             send_ctrl_msg(MSG_ACT_RESTART);
             flRestart = false;
@@ -355,8 +354,7 @@ void onRadioRecv(void)
 
     case PH_MSG_Control:
         MSG_CHECK_FOR_PAYLOAD(radioBuffer, phaser_control_t, break);
-        if(curExp) sendTestResults();
-
+        //if(curExp) sendTestResults();
         act = ctrl_data_p->action;
         if(act == MSG_ACT_START ){
             flRestart = false;  // Clear restart command attempt
@@ -384,6 +382,7 @@ void onRadioRecv(void)
           MSG_CHECK_FOR_PAYLOAD(radioBuffer, phaser_done_t, break);
           //PRINTF("Done received");
           print_serial_dump();
+          sendTestResults();
           fl_MsgDone = 1;
         }
         break;
