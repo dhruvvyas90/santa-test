@@ -32,6 +32,7 @@ static int config_counter=0;
 
 bool fl_test_restart=true;
 bool fl_test_stop=true;
+bool fl_Done=true;
 
 
 angle_t lastAngle = ANGLE_NOT_SET_VALUE;
@@ -173,7 +174,7 @@ void send_done_msg(uint8_t done)
         MSG_RADIO_SEND(done_msg);
     //    mdelay(20);
     //}
-    mdelay(500);
+    mdelay(4000);
 }
 
 // -------------------------------------------------------------------------
@@ -470,10 +471,6 @@ void appMain(void)
 
             test_step();
             //sending done message for serial dump
-            if ((int)ant_cfg_p->expIdx % 8 == 0)
-            {
-              send_done_msg(1);
-            }
             if( ! test_next() ){
                 send_ctrl_msg(MSG_ACT_DONE);
                 break;
@@ -482,7 +479,11 @@ void appMain(void)
             if( ant_check_button() ) fl_test_restart = true;
         }
         // Test done!
-
+        if(fl_Done)
+        {
+          send_done_msg(1);
+          fl_Done = false;
+        }
         while( !fl_test_restart || fl_test_stop )
         {
             ledTestFinished();

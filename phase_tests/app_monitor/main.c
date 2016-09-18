@@ -15,7 +15,7 @@
 
 
 #define RATE_DELAY 200
-#define MAX_NO_PACKETS_IN_TEST 150
+#define MAX_NO_PACKETS_IN_TEST 800
 
 // Phaser control message(s)
 MSG_NEW_WITH_ID(ctrl_msg, phaser_control_t, PH_MSG_Control);
@@ -32,6 +32,9 @@ uint16_t SmsgCount[MAX_NO_PACKETS_IN_TEST];
 uint32_t SrxIdx[MAX_NO_PACKETS_IN_TEST];
 int Srssi[MAX_NO_PACKETS_IN_TEST];
 int Slqi[MAX_NO_PACKETS_IN_TEST];
+int Spower[MAX_NO_PACKETS_IN_TEST];
+int Sangle[MAX_NO_PACKETS_IN_TEST];
+int Sphase[MAX_NO_PACKETS_IN_TEST];
 
 // --------------------------------------------
 
@@ -134,15 +137,44 @@ void sendTestResults()
         rssi_devSq = STREAM_STAT_DEVIATION_SQUARED(exp->rssi_data);
         lqi_mean = STREAM_STAT_MEAN(exp->lqi_data);
         lqi_devSq = STREAM_STAT_DEVIATION_SQUARED(exp->lqi_data);
-        PRINTF("Test:\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%ld\t%ld\t%ld\t\n",(int) lastExpIdx,(int) exp->power,(int) exp->angle,(int) exp->phase,(int) exp->rssi_data.num,(int) rssi_mean,(int) lqi_mean,(long unsigned int) (rssi_devSq),(long unsigned int)(lqi_devSq),(long) packet_count);
+        //PRINTF("Test:"
+        //    "\t%d"
+        //    "\t%d\t%d\t%d"
+            // "\t%d\t%d\t%d\t%d\t%ld"
+            // "\t%d\t%d\t%d\t%d\t%ld"
+        //    "\t%d\t%d\t%d"
+        //    "\t%ld\t%ld\t%ld\t"
+        //    "\n",
+        //    (int) lastExpIdx,
+
+        //    (int) exp->power,
+        //    (int) exp->angle,
+        //    (int) exp->phase,
+
+            // (int) exp->rssi_data.sum,
+            // (int) exp->rssi_data.sum_squares,
+
+            // (int) exp->lqi_data.num,
+            // (int) exp->lqi_data.sum,
+            // (int) exp->lqi_data.sum_squares,
+
+        //    (int) exp->rssi_data.num,
+        //    (int) rssi_mean,
+        //    (int) lqi_mean,
+
+        //    (long unsigned int) (rssi_devSq),
+        //    (long unsigned int) (lqi_devSq),
+        //    (long) packet_count
+        //    )
         // debugHexdump((uint8_t *) exp, sizeof(experiment_t));
+
         // Clear data
         exp->power = 0;
         exp->angle = 0;
         exp->phase = 0;
-        packet_count = 0;
-        STREAM_STAT_INIT(exp->rssi_data);
-        STREAM_STAT_INIT(exp->lqi_data);
+        //packet_count = 0;
+        //STREAM_STAT_INIT(exp->rssi_data);
+        //STREAM_STAT_INIT(exp->lqi_data);
     }
     //...
 
@@ -167,6 +199,9 @@ inline void processTestMsg(phaser_ping_t * test, rssi_t rssi, lqi_t lqi)
     exp->power = test->power;
     exp->angle = test->angle;
     exp->phase = test->ant.phaseA | test->ant.phaseB ;
+    Spower[packet_count] = exp->power;
+    Sangle[packet_count] = exp->angle;
+    Sangle[packet_count] = exp->phase;
     STREAM_STAT_ADD(exp->rssi_data, rssi);
     STREAM_STAT_ADD(exp->lqi_data, lqi);
 
@@ -220,7 +255,7 @@ void print_serial_dump()
   int i;
   for(i=0;i<packet_count;i++)
   {
-    PRINTF("%d\t%ld\t%ld\t%d\t%ld\t%d\t%d\t\n",(int) lastExpIdx, (long)SrxTime[i], (long)Stimestamp[i], (int)SmsgCount[i], (long)SrxIdx[i], (int)Srssi[i], (int)Slqi[i]);
+    PRINTF("%ld\t%ld\t%d\t%ld\t%d\t%d\t%d\t%d\t%d\t\n",(long)SrxTime[i], (long)Stimestamp[i], (int)SmsgCount[i], (long)SrxIdx[i], (int)Srssi[i], (int)Slqi[i], (int) Spower[i],(int) Sangle[i],(int) Sphase[i]);
   }
 }
 
@@ -291,6 +326,7 @@ void onRadioRecv(void)
 
     int act = MSG_ACT_CLEAR;
     bool flOK=true;
+
     switch( radioBuffer.id ){
     case PH_MSG_Test:
         MSG_CHECK_FOR_PAYLOAD(radioBuffer, phaser_ping_t, flOK=false );
@@ -300,7 +336,7 @@ void onRadioRecv(void)
         }
         // Check if new experiment iteration started.
         if(lastExpIdx != test_data_p->expIdx && curExp){
-            //sendTestResults();
+            sendTestResults();
         }
         SrxTime[packet_count] = rxTime;
         Stimestamp[packet_count] = test_data_p->timestamp;
@@ -316,7 +352,7 @@ void onRadioRecv(void)
         break;
 
     case PH_MSG_Angle:
-        //if(curExp) sendTestResults();
+        if(curExp) sendTestResults();
         if( flRestart ){        // Best time to resend the restart message after the angle change
             send_ctrl_msg(MSG_ACT_RESTART);
             flRestart = false;
@@ -325,7 +361,8 @@ void onRadioRecv(void)
 
     case PH_MSG_Control:
         MSG_CHECK_FOR_PAYLOAD(radioBuffer, phaser_control_t, break);
-        //if(curExp) sendTestResults();
+        if(curExp) sendTestResults();
+
         act = ctrl_data_p->action;
         if(act == MSG_ACT_START ){
             flRestart = false;  // Clear restart command attempt
@@ -353,7 +390,6 @@ void onRadioRecv(void)
           MSG_CHECK_FOR_PAYLOAD(radioBuffer, phaser_done_t, break);
           //PRINTF("Done received");
           print_serial_dump();
-          sendTestResults();
           fl_MsgDone = 1;
         }
         break;
