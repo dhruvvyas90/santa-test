@@ -470,7 +470,10 @@ void appMain(void)
 
             test_step();
             //sending done message for serial dump
-            send_done_msg(1);
+            if ((int)ant_cfg_p->expIdx % 8 == 0)
+            {
+              send_done_msg(1);
+            }
             if( ! test_next() ){
                 send_ctrl_msg(MSG_ACT_DONE);
                 break;
