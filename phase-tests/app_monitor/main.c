@@ -249,7 +249,7 @@ void print_serial_dump()
   int i;
   for(i=0;i<packet_count;i++)
   {
-    PRINTF("%ld\t%ld\t%d\t%ld\t%d\t%d\t\n",(long)SrxTime[i], (long)Stimestamp[i], (int)SmsgCount[i], (long)SrxIdx[i], (int)Srssi[i], (int)Slqi[i]);
+    PRINTF("%d\t%ld\t%ld\t%d\t%ld\t%d\t%d\t\n",(int) lastExpIdx, (long)SrxTime[i], (long)Stimestamp[i], (int)SmsgCount[i], (long)SrxIdx[i], (int)Srssi[i], (int)Slqi[i]);
   }
 }
 
