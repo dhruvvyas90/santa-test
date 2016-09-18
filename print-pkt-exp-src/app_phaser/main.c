@@ -173,7 +173,7 @@ void send_done_msg(uint8_t done)
         MSG_RADIO_SEND(done_msg);
     //    mdelay(20);
     //}
-    mdelay(1000);
+    mdelay(2000);
 }
 
 // -------------------------------------------------------------------------
