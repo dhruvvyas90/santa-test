@@ -18,6 +18,8 @@
 char *ant_driver_name = "Phaser";
 #define PLATFORM_ID  PH_PHASER
 
+uint32_t timeRand;
+int rand;
 
 // -------------------------------------------------------------------------
 // Set of test configurations that should be executed
@@ -125,6 +127,18 @@ bool ant_test_next_config(test_loop_t *testIdx, test_config_t *test_config, phas
             return true;
         }
     }
+    // if(test_config->ant.phaseB.count){
+    //     testIdx->phaseB.idx++;
+    //     if( testIdx->phaseB.idx >= testIdx->phaseB.limit ){
+    //         testIdx->phaseB.idx = 0;
+    //         ant_cfg_p->ant.phaseB = test_config->ant.phaseB.start;
+    //     }
+    //     else {
+    //         ant_cfg_p->ant.phaseB += test_config->ant.phaseB.step;
+    //         return true;
+    //     }
+    // }
+    timeRand = getTimeMs();
     if(test_config->ant.phaseB.count){
         testIdx->phaseB.idx++;
         if( testIdx->phaseB.idx >= testIdx->phaseB.limit ){
@@ -132,7 +146,15 @@ bool ant_test_next_config(test_loop_t *testIdx, test_config_t *test_config, phas
             ant_cfg_p->ant.phaseB = test_config->ant.phaseB.start;
         }
         else {
-            ant_cfg_p->ant.phaseB += test_config->ant.phaseB.step;
+            rand = timeRand % 4;
+            //if(rand > 0)
+            //{
+              ant_cfg_p->ant.phaseB = test_config->ant.phaseB.start + test_config->ant.phaseB.step * rand;
+            //}
+            //else
+            //{
+            //  ant_cfg_p->ant.phaseB += test_config->ant.phaseB.step;
+            //}
             return true;
         }
     }
