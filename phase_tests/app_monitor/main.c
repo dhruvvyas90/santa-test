@@ -256,6 +256,7 @@ void print_serial_dump()
   for(i=0;i<packet_count;i++)
   {
     PRINTF("%ld\t%d\t%d\t%d\t%d\t%d\t%d\t\n",(long)Stimestamp[i], (int)SmsgCount[i], (int)Srssi[i], (int)Slqi[i], (int) Spower[i],(int) Sangle[i],(int) Sphase[i]);
+    mdelay(10);
   }
 }
 
@@ -338,10 +339,10 @@ void onRadioRecv(void)
         if(lastExpIdx != test_data_p->expIdx && curExp){
             sendTestResults();
         }
-        SrxTime[packet_count] = rxTime;
+        //SrxTime[packet_count] = rxTime;
         Stimestamp[packet_count] = test_data_p->timestamp;
         SmsgCount[packet_count] = test_data_p->msgCounter;
-        SrxIdx[packet_count] = rxIdx;
+        //SrxIdx[packet_count] = rxIdx;
         Srssi[packet_count] = rssi;
         Slqi[packet_count] = lqi;
         packet_count++;
@@ -388,6 +389,7 @@ void onRadioRecv(void)
         {
           fl_MsgDone = 0;
           MSG_CHECK_FOR_PAYLOAD(radioBuffer, phaser_done_t, break);
+          PRINTF("Done Received\n");
           print_serial_dump();
           fl_MsgDone = 1;
         }
