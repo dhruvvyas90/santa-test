@@ -390,6 +390,7 @@ void onRadioRecv(void)
           MSG_CHECK_FOR_PAYLOAD(radioBuffer, phaser_done_t, break);
           PRINTF("Done received\n");
           print_serial_dump();
+          packet_count = 0;
           fl_MsgDone = 1;
         }
         break;
