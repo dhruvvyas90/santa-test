@@ -391,6 +391,7 @@ void onRadioRecv(void)
           PRINTF("Done received\n");
           print_serial_dump();
           packet_count = 0;
+          PRINTF("Packet count : %d\n",packet_count);
           fl_MsgDone = 1;
         }
         break;
