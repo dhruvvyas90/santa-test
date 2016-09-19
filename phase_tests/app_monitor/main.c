@@ -15,7 +15,7 @@
 
 
 #define RATE_DELAY 200
-#define MAX_NO_PACKETS_IN_TEST 800
+#define MAX_NO_PACKETS_IN_TEST 100
 
 // Phaser control message(s)
 MSG_NEW_WITH_ID(ctrl_msg, phaser_control_t, PH_MSG_Control);
@@ -26,10 +26,10 @@ MSG_DEFINE_BUFFER_WITH_ID(radioBuffer, recv_data_p, RADIO_MAX_PACKET);
 
 // define arrays for serial Dump
 
-uint32_t SrxTime[MAX_NO_PACKETS_IN_TEST];
+//uint32_t SrxTime[MAX_NO_PACKETS_IN_TEST];
 uint32_t Stimestamp[MAX_NO_PACKETS_IN_TEST];
 uint16_t SmsgCount[MAX_NO_PACKETS_IN_TEST];
-uint32_t SrxIdx[MAX_NO_PACKETS_IN_TEST];
+//uint32_t SrxIdx[MAX_NO_PACKETS_IN_TEST];
 int Srssi[MAX_NO_PACKETS_IN_TEST];
 int Slqi[MAX_NO_PACKETS_IN_TEST];
 int Spower[MAX_NO_PACKETS_IN_TEST];
@@ -255,7 +255,7 @@ void print_serial_dump()
   int i;
   for(i=0;i<packet_count;i++)
   {
-    PRINTF("%ld\t%ld\t%d\t%ld\t%d\t%d\t%d\t%d\t%d\t\n",(long)SrxTime[i], (long)Stimestamp[i], (int)SmsgCount[i], (long)SrxIdx[i], (int)Srssi[i], (int)Slqi[i], (int) Spower[i],(int) Sangle[i],(int) Sphase[i]);
+    PRINTF("%ld\t%d\t%d\t%d\t%d\t%d\t%d\t\n",(long)Stimestamp[i], (int)SmsgCount[i], (int)Srssi[i], (int)Slqi[i], (int) Spower[i],(int) Sangle[i],(int) Sphase[i]);
   }
 }
 
@@ -388,7 +388,6 @@ void onRadioRecv(void)
         {
           fl_MsgDone = 0;
           MSG_CHECK_FOR_PAYLOAD(radioBuffer, phaser_done_t, break);
-          //PRINTF("Done received");
           print_serial_dump();
           fl_MsgDone = 1;
         }

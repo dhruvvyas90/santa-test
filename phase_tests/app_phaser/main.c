@@ -468,7 +468,6 @@ void appMain(void)
         while( !fl_test_restart && !fl_test_stop )
         {
             ledToggle();
-
             test_step();
             //sending done message for serial dump
             if( ! test_next() ){

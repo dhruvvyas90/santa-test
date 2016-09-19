@@ -28,14 +28,14 @@ test_config_t testSet[] = {
         .start_delay = 100,
         .send_delay  = 0,
         .send_count  = 1,
-        .angle_step  = 5,
-        .angle_count = 40,
+        .angle_step  = 10,
+        .angle_count = 20,
         .ant.phaseA.start = 0,
         .ant.phaseA.step  = 0,
         .ant.phaseA.count = 0,
         .ant.phaseB.start = 0,
         .ant.phaseB.step  = 32,
-        .ant.phaseB.count = 8,
+        .ant.phaseB.count = 4,
         .power = {15, 0}
     },
     //{
