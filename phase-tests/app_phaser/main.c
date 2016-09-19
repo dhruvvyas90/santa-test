@@ -32,7 +32,6 @@ static int config_counter=0;
 
 bool fl_test_restart=true;
 bool fl_test_stop=true;
-bool fl_Done=true;
 
 
 angle_t lastAngle = ANGLE_NOT_SET_VALUE;
@@ -169,11 +168,11 @@ void send_done_msg(uint8_t done)
     MSG_DO_CHECKSUM(done_msg);
     // Send 3 times for reliability.
     radioSetTxPower(RADIO_MAX_TX_POWER);
-    mdelay(1000);
-    for(i=0; i<3; i++){
+    mdelay(20);
+    //for(i=0; i<3; i++){
         MSG_RADIO_SEND(done_msg);
-        mdelay(100);
-    }
+    //    mdelay(20);
+    //}
     mdelay(4000);
 }
 
@@ -468,8 +467,10 @@ void appMain(void)
         while( !fl_test_restart && !fl_test_stop )
         {
             ledToggle();
+
             test_step();
             //sending done message for serial dump
+            send_done_msg(1);
             if( ! test_next() ){
                 send_ctrl_msg(MSG_ACT_DONE);
                 break;
@@ -478,11 +479,7 @@ void appMain(void)
             if( ant_check_button() ) fl_test_restart = true;
         }
         // Test done!
-        if(fl_Done)
-        {
-          send_done_msg(1);
-          fl_Done = false;
-        }
+
         while( !fl_test_restart || fl_test_stop )
         {
             ledTestFinished();
