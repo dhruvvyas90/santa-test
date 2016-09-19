@@ -168,12 +168,12 @@ void send_done_msg(uint8_t done)
     MSG_DO_CHECKSUM(done_msg);
     // Send 3 times for reliability.
     radioSetTxPower(RADIO_MAX_TX_POWER);
-    mdelay(20);
+    mdelay(1000);
     //for(i=0; i<3; i++){
         MSG_RADIO_SEND(done_msg);
     //    mdelay(20);
     //}
-    mdelay(20);
+    mdelay(1000);
 }
 
 // -------------------------------------------------------------------------
@@ -453,7 +453,6 @@ void appMain(void)
     radioOn();
 
     fl_test_stop = false;
-    fl_done = true;
     while(1)
     {
         config_init();  // Init the global configuration list
@@ -463,6 +462,7 @@ void appMain(void)
 
         mdelay_var( test_config.start_delay );
         fl_test_restart = false;
+        fl_done = true;
 
         while( !fl_test_restart && !fl_test_stop )
         {
