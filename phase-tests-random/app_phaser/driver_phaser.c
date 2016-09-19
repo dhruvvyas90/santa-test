@@ -19,7 +19,7 @@ char *ant_driver_name = "Phaser";
 #define PLATFORM_ID  PH_PHASER
 
 uint32_t timeRand;
-int rand;
+int rand1;
 
 // -------------------------------------------------------------------------
 // Set of test configurations that should be executed
@@ -146,10 +146,10 @@ bool ant_test_next_config(test_loop_t *testIdx, test_config_t *test_config, phas
             ant_cfg_p->ant.phaseB = test_config->ant.phaseB.start;
         }
         else {
-            rand = timeRand % 4;
+            rand1 = timeRand % 4;
             //if(rand > 0)
             //{
-              ant_cfg_p->ant.phaseB = test_config->ant.phaseB.start + test_config->ant.phaseB.step * rand;
+              ant_cfg_p->ant.phaseB = test_config->ant.phaseB.start + test_config->ant.phaseB.step * rand1;
             //}
             //else
             //{
