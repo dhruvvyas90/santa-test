@@ -32,7 +32,7 @@ static int config_counter=0;
 
 bool fl_test_restart=true;
 bool fl_test_stop=true;
-
+bool fl_done =true;
 
 angle_t lastAngle = ANGLE_NOT_SET_VALUE;
 bool fl_AngleSet=false;
@@ -173,7 +173,7 @@ void send_done_msg(uint8_t done)
         MSG_RADIO_SEND(done_msg);
     //    mdelay(20);
     //}
-    mdelay(4000);
+    mdelay(20);
 }
 
 // -------------------------------------------------------------------------
@@ -470,7 +470,7 @@ void appMain(void)
 
             test_step();
             //sending done message for serial dump
-            send_done_msg(1);
+            //send_done_msg(1);
             if( ! test_next() ){
                 send_ctrl_msg(MSG_ACT_DONE);
                 break;
@@ -479,6 +479,11 @@ void appMain(void)
             if( ant_check_button() ) fl_test_restart = true;
         }
         // Test done!
+        if(fl_done)
+        {
+          send_done_msg(1);
+          fl_done = false;
+        }
 
         while( !fl_test_restart || fl_test_stop )
         {

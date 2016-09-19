@@ -15,7 +15,7 @@
 
 
 #define RATE_DELAY 200
-#define MAX_NO_PACKETS_IN_TEST 150
+#define MAX_NO_PACKETS_IN_TEST 100
 
 // Phaser control message(s)
 MSG_NEW_WITH_ID(ctrl_msg, phaser_control_t, PH_MSG_Control);
@@ -26,12 +26,15 @@ MSG_DEFINE_BUFFER_WITH_ID(radioBuffer, recv_data_p, RADIO_MAX_PACKET);
 
 // define arrays for serial Dump
 
-uint32_t SrxTime[MAX_NO_PACKETS_IN_TEST];
+//uint32_t SrxTime[MAX_NO_PACKETS_IN_TEST];
 uint32_t Stimestamp[MAX_NO_PACKETS_IN_TEST];
 uint16_t SmsgCount[MAX_NO_PACKETS_IN_TEST];
-uint32_t SrxIdx[MAX_NO_PACKETS_IN_TEST];
+//uint32_t SrxIdx[MAX_NO_PACKETS_IN_TEST];
 int Srssi[MAX_NO_PACKETS_IN_TEST];
 int Slqi[MAX_NO_PACKETS_IN_TEST];
+int Spower[MAX_NO_PACKETS_IN_TEST];
+int Sangle[MAX_NO_PACKETS_IN_TEST];
+int Sphase[MAX_NO_PACKETS_IN_TEST];
 
 // --------------------------------------------
 
@@ -169,7 +172,7 @@ void sendTestResults()
         exp->power = 0;
         exp->angle = 0;
         exp->phase = 0;
-        packet_count = 0;
+        //packet_count = 0;
         STREAM_STAT_INIT(exp->rssi_data);
         STREAM_STAT_INIT(exp->lqi_data);
     }
@@ -196,6 +199,9 @@ inline void processTestMsg(phaser_ping_t * test, rssi_t rssi, lqi_t lqi)
     exp->power = test->power;
     exp->angle = test->angle;
     exp->phase = test->ant.phaseA | test->ant.phaseB ;
+    Spower[packet_count] = exp->power;
+    Sangle[packet_count] = exp->angle;
+    Sphase[packet_count] = exp->phase;
     STREAM_STAT_ADD(exp->rssi_data, rssi);
     STREAM_STAT_ADD(exp->lqi_data, lqi);
 
@@ -249,7 +255,7 @@ void print_serial_dump()
   int i;
   for(i=0;i<packet_count;i++)
   {
-    PRINTF("%ld\t%ld\t%d\t%ld\t%d\t%d\t\n",(long)SrxTime[i], (long)Stimestamp[i], (int)SmsgCount[i], (long)SrxIdx[i], (int)Srssi[i], (int)Slqi[i]);
+    PRINTF("%ld\t%d\t%d\t%d\t%d\t%d\t%d\t\n",(long)Stimestamp[i], (int)SmsgCount[i], (int)Srssi[i], (int)Slqi[i], (int)Spower[i],(int)Sangle[i], (int)Sphase[i]);
   }
 }
 
@@ -332,10 +338,10 @@ void onRadioRecv(void)
         if(lastExpIdx != test_data_p->expIdx && curExp){
             sendTestResults();
         }
-        SrxTime[packet_count] = rxTime;
+        //SrxTime[packet_count] = rxTime;
         Stimestamp[packet_count] = test_data_p->timestamp;
         SmsgCount[packet_count] = test_data_p->msgCounter;
-        SrxIdx[packet_count] = rxIdx;
+        //SrxIdx[packet_count] = rxIdx;
         Srssi[packet_count] = rssi;
         Slqi[packet_count] = lqi;
         packet_count++;
@@ -383,7 +389,7 @@ void onRadioRecv(void)
           fl_MsgDone = 0;
           MSG_CHECK_FOR_PAYLOAD(radioBuffer, phaser_done_t, break);
           PRINTF("Done received\n");
-          //print_serial_dump();
+          print_serial_dump();
           fl_MsgDone = 1;
         }
         break;
