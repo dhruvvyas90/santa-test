@@ -453,7 +453,7 @@ void appMain(void)
     radioOn();
 
     fl_test_stop = false;
-
+    fl_done = true;
     while(1)
     {
         config_init();  // Init the global configuration list

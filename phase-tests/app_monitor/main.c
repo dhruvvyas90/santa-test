@@ -409,6 +409,7 @@ void onRadioRecv(void)
 void appMain(void)
 {
     serialEnableRX(PRINTF_SERIAL_ID);
+    packet_count = 0;
     // serialSetReceiveHandle(PRINTF_SERIAL_ID, onSerRecv);
     serialSetPacketReceiveHandle(PRINTF_SERIAL_ID, onSerRecv, serBuffer, SER_BUF_SIZE);
 
