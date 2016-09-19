@@ -248,6 +248,8 @@ void print_test_config(test_config_t *test_config)
         (int) test_config->ant.phaseB.count);
 
     PRINTF("\n");
+    //making sure array remains in bounds
+    packet_count = 0;
 }
 
 void print_serial_dump()
