@@ -344,11 +344,11 @@ void onRadioRecv(void)
         //SrxIdx[packet_count] = rxIdx;
         Srssi[packet_count] = rssi;
         Slqi[packet_count] = lqi;
-        packet_count++;
 #ifdef PRINT_PACKETS
 	      PRINTF("%ld\t%ld\t%d\t%ld\t%d\t%d\t\n",(long)rxTime, (long) test_data_p->timestamp, (int)test_data_p->msgCounter, (long)rxIdx, (int)rssi, (int)lqi);
 #endif
 	      processTestMsg(test_data_p, rssi, lqi);
+        packet_count++;
         break;
 
     case PH_MSG_Angle:
