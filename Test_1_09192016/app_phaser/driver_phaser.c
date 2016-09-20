@@ -98,15 +98,29 @@ bool ant_test_sanity_check(test_config_t *newTest)
 // -------------------------------------------------------------------------
 void ant_test_init(test_loop_t *testIdx, test_config_t *test_config, phaser_ping_t *ant_cfg_p)
 {
+    int i;
+    int j;
     // Init the iterators
     testIdx->phaseA.idx = 0;
     testIdx->phaseA.limit = test_config->ant.phaseA.count;
     testIdx->phaseB.idx = 0;
     testIdx->phaseB.limit = test_config->ant.phaseB.count;
-
+    timeRand = getTimeMs();
+    rand1 = timeRand % rand_count;
     // Init the antena configuration
     ant_cfg_p->ant.phaseA = test_config->ant.phaseA.start;
-    ant_cfg_p->ant.phaseB = test_config->ant.phaseB.start;
+    //ant_cfg_p->ant.phaseB = test_config->ant.phaseB.start;
+    ant_cfg_p->ant.phaseB = ant_a_phase[rand1];
+    j=0;
+    for(i=0;i<rand_count;i++)
+    {
+      if(rand1 == i)
+      {
+        continue;
+      }
+      ant_a_phase[j++] = ant_a_phase[i];
+    }
+    rand_count--;
 }
 
 
@@ -150,7 +164,7 @@ bool ant_test_next_config(test_loop_t *testIdx, test_config_t *test_config, phas
         testIdx->phaseB.idx++;
         if( testIdx->phaseB.idx >= testIdx->phaseB.limit )
         {
-            testIdx->phaseB.idx = 66;
+            testIdx->phaseB.idx = 0;
             //ant_cfg_p->ant.phaseB = test_config->ant.phaseB.start;
             //ant_cfg_p->ant.phaseB = 66;
             //data for random lines
