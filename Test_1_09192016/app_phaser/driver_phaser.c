@@ -152,7 +152,7 @@ bool ant_test_next_config(test_loop_t *testIdx, test_config_t *test_config, phas
         {
             testIdx->phaseB.idx = 0;
             //ant_cfg_p->ant.phaseB = test_config->ant.phaseB.start;
-            ant_cfg_p->ant.phaseB = 66;
+            //ant_cfg_p->ant.phaseB = 66;
             //data for random lines
             for(i=0;i<8;i++)
             {
@@ -182,9 +182,13 @@ bool ant_test_next_config(test_loop_t *testIdx, test_config_t *test_config, phas
             {
               if(rand1 == i)
               {
-                continue;
+                //continue;
               }
-              ant_a_phase[j++] = ant_a_phase[i];
+              else
+              {
+                ant_a_phase[j] = ant_a_phase[i];
+                j++;
+              }
             }
             rand_count--;
             //}
