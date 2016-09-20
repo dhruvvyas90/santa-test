@@ -20,8 +20,8 @@ char *ant_driver_name = "Phaser";
 
 uint32_t timeRand;
 uint8_t rand1;
-uint8_t phase_data[8] = {2, 8, 16, 32, 64, 128, 196, 255};
-uint8_t ant_a_phase[8] = {2, 8, 16, 32, 64, 128, 196, 255};
+uint8_t phase_data[8] = {0, 8, 16, 32, 64, 128, 196, 255};
+uint8_t ant_a_phase[8] = {0, 8, 16, 32, 64, 128, 196, 255};
 uint8_t rand_count = 8;
 
 // -------------------------------------------------------------------------
@@ -121,17 +121,17 @@ bool ant_test_next_config(test_loop_t *testIdx, test_config_t *test_config, phas
     uint8_t i;
     uint8_t j;
     // Next phase
-    if(test_config->ant.phaseA.count){
-        testIdx->phaseA.idx++;
-        if( testIdx->phaseA.idx >= testIdx->phaseA.limit ){
-            testIdx->phaseA.idx = 0;
+    // if(test_config->ant.phaseA.count){
+    //     testIdx->phaseA.idx++;
+    //     if( testIdx->phaseA.idx >= testIdx->phaseA.limit ){
+    //         testIdx->phaseA.idx = 0;
             ant_cfg_p->ant.phaseA = test_config->ant.phaseA.start;
-        }
-        else {
-            ant_cfg_p->ant.phaseA += test_config->ant.phaseA.step;
-            return true;
-        }
-    }
+    //     }
+    //     else {
+    //         ant_cfg_p->ant.phaseA += test_config->ant.phaseA.step;
+    //         return true;
+    //     }
+    // }
     // if(test_config->ant.phaseB.count){
     //     testIdx->phaseB.idx++;
     //     if( testIdx->phaseB.idx >= testIdx->phaseB.limit ){
