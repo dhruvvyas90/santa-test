@@ -150,7 +150,7 @@ bool ant_test_next_config(test_loop_t *testIdx, test_config_t *test_config, phas
             ant_cfg_p->ant.phaseB = test_config->ant.phaseB.start;
             //data for random lines
             ant_a_phase[8] = {0, 8, 16, 32, 64, 128, 196, 255};
-            ant_u_phase[8] = {};
+            //ant_u_phase[8] = {};
             rand_count = 8;
         }
         else {
