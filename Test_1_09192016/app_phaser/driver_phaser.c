@@ -151,7 +151,8 @@ bool ant_test_next_config(test_loop_t *testIdx, test_config_t *test_config, phas
         if( testIdx->phaseB.idx >= testIdx->phaseB.limit )
         {
             testIdx->phaseB.idx = 0;
-            ant_cfg_p->ant.phaseB = test_config->ant.phaseB.start;
+            //ant_cfg_p->ant.phaseB = test_config->ant.phaseB.start;
+            ant_cfg_p->ant.phaseB = 66;
             //data for random lines
             for(i=0;i<8;i++)
             {
