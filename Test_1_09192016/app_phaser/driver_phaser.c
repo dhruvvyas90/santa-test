@@ -121,17 +121,17 @@ bool ant_test_next_config(test_loop_t *testIdx, test_config_t *test_config, phas
     uint8_t i;
     uint8_t j;
     // Next phase
-    // if(test_config->ant.phaseA.count){
-    //     testIdx->phaseA.idx++;
-    //     if( testIdx->phaseA.idx >= testIdx->phaseA.limit ){
-    //         testIdx->phaseA.idx = 0;
+    if(test_config->ant.phaseA.count){
+        testIdx->phaseA.idx++;
+        if( testIdx->phaseA.idx >= testIdx->phaseA.limit ){
+            testIdx->phaseA.idx = 0;
             ant_cfg_p->ant.phaseA = test_config->ant.phaseA.start;
-    //     }
-    //     else {
-    //         ant_cfg_p->ant.phaseA += test_config->ant.phaseA.step;
-    //         return true;
-    //     }
-    // }
+        }
+        else {
+            ant_cfg_p->ant.phaseA += test_config->ant.phaseA.step;
+            return true;
+        }
+    }
     // if(test_config->ant.phaseB.count){
     //     testIdx->phaseB.idx++;
     //     if( testIdx->phaseB.idx >= testIdx->phaseB.limit ){
@@ -150,7 +150,7 @@ bool ant_test_next_config(test_loop_t *testIdx, test_config_t *test_config, phas
         testIdx->phaseB.idx++;
         if( testIdx->phaseB.idx >= testIdx->phaseB.limit )
         {
-            testIdx->phaseB.idx = 0;
+            testIdx->phaseB.idx = 66;
             //ant_cfg_p->ant.phaseB = test_config->ant.phaseB.start;
             //ant_cfg_p->ant.phaseB = 66;
             //data for random lines
