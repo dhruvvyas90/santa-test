@@ -340,10 +340,10 @@ void onRadioRecv(void)
         if(lastExpIdx != test_data_p->expIdx && curExp){
             sendTestResults();
         }
-        //SrxTime[packet_count] = rxTime;
+        SrxTime[packet_count] = rxTime;
         Stimestamp[packet_count] = test_data_p->timestamp;
         SmsgCount[packet_count] = test_data_p->msgCounter;
-        //SrxIdx[packet_count] = rxIdx;
+        SrxIdx[packet_count] = rxIdx;
         Srssi[packet_count] = rssi;
         Slqi[packet_count] = lqi;
 #ifdef PRINT_PACKETS
