@@ -160,6 +160,16 @@ bool ant_test_next_config(test_loop_t *testIdx, test_config_t *test_config, phas
             //ant_u_phase[8] = {};
             rand_count = 8;
             ant_cfg_p->ant.phaseB = ant_a_phase[rand1];
+            j=0;
+            for(i=0;i<rand_count;i++)
+            {
+              if(rand1 == i)
+              {
+                continue;
+              }
+              ant_a_phase[j++] = ant_a_phase[i];
+            }
+            rand_count--;
         }
         else
         {
