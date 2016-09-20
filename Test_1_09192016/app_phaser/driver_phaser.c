@@ -143,7 +143,6 @@ bool ant_test_next_config(test_loop_t *testIdx, test_config_t *test_config, phas
     //         return true;
     //     }
     // }
-    timeRand = getTimeMs();
     if(test_config->ant.phaseB.count)
     {
         testIdx->phaseB.idx++;
@@ -161,6 +160,7 @@ bool ant_test_next_config(test_loop_t *testIdx, test_config_t *test_config, phas
         }
         else
         {
+            timeRand = getTimeMs();
             rand1 = timeRand % rand_count;
             //if(rand > 0)
             //{
