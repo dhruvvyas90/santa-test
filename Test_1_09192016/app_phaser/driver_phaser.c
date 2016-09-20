@@ -20,6 +20,7 @@ char *ant_driver_name = "Phaser";
 
 uint32_t timeRand;
 uint8_t rand1;
+uint8_t phase_data[8] = {0, 8, 16, 32, 64, 128, 196, 255};
 uint8_t ant_a_phase[8] = {0, 8, 16, 32, 64, 128, 196, 255};
 uint8_t rand_count = 8;
 
@@ -143,17 +144,23 @@ bool ant_test_next_config(test_loop_t *testIdx, test_config_t *test_config, phas
     //     }
     // }
     timeRand = getTimeMs();
-    if(test_config->ant.phaseB.count){
+    if(test_config->ant.phaseB.count)
+    {
         testIdx->phaseB.idx++;
-        if( testIdx->phaseB.idx >= testIdx->phaseB.limit ){
+        if( testIdx->phaseB.idx >= testIdx->phaseB.limit )
+        {
             testIdx->phaseB.idx = 0;
             ant_cfg_p->ant.phaseB = test_config->ant.phaseB.start;
             //data for random lines
-            ant_a_phase[8] = {0, 8, 16, 32, 64, 128, 196, 255};
+            for(i=0;i<8;i++)
+            {
+              ant_a_phase[i] = phase_data[i];
+            }
             //ant_u_phase[8] = {};
             rand_count = 8;
         }
-        else {
+        else
+        {
             rand1 = timeRand % rand_count;
             //if(rand > 0)
             //{
