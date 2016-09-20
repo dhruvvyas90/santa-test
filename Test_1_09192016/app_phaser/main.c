@@ -484,6 +484,7 @@ void appMain(void)
           send_done_msg(1);
           fl_done = false;
         }
+        continue;
 
         while( !fl_test_restart || fl_test_stop )
         {
