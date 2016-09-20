@@ -20,8 +20,8 @@ char *ant_driver_name = "Phaser";
 
 uint32_t timeRand;
 uint8_t rand1;
-uint8_t phase_data[8] = {0, 8, 16, 32, 64, 128, 196, 255};
-uint8_t ant_a_phase[8] = {0, 8, 16, 32, 64, 128, 196, 255};
+uint8_t phase_data[8] = {2, 8, 16, 32, 64, 128, 196, 255};
+uint8_t ant_a_phase[8] = {2, 8, 16, 32, 64, 128, 196, 255};
 uint8_t rand_count = 8;
 
 // -------------------------------------------------------------------------
