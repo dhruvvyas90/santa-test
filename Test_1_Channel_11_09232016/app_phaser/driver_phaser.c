@@ -166,7 +166,7 @@ bool ant_test_next_config(test_loop_t *testIdx, test_config_t *test_config, phas
         }
         else {
             timeRand = getTimeMs();
-            rand1 = timeRand % rand_b_count;
+            rand1 = timeRand % rand_a_count;
             ant_cfg_p->ant.phaseA = ant_a_phase[rand1];
             j=0;
             for(i=0;i<rand_a_count;i++)
