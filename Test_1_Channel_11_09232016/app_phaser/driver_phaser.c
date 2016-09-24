@@ -112,6 +112,8 @@ void ant_test_init(test_loop_t *testIdx, test_config_t *test_config, phaser_ping
     testIdx->phaseA.limit = test_config->ant.phaseA.count;
     testIdx->phaseB.idx = 0;
     testIdx->phaseB.limit = test_config->ant.phaseB.count;
+    rand_a_count = NO_OF_PHASEA;
+    rand_b_count = NO_OF_PHASEB;
     timeRand = getTimeMs();
     rand1 = timeRand % rand_a_count;
     for(i=0;i<NO_OF_PHASEA;i++)
@@ -128,7 +130,7 @@ void ant_test_init(test_loop_t *testIdx, test_config_t *test_config, phaser_ping
     //ant_cfg_p->ant.phaseB = test_config->ant.phaseB.start;
     mdelay(5);
     timeRand = getTimeMs();
-    rand1 = timeRand % rand_a_count;
+    rand1 = timeRand % rand_b_count;
     ant_cfg_p->ant.phaseB = ant_b_phase[rand1];
     j=0;
     for(i=0;i<rand_a_count;i++)
@@ -138,6 +140,16 @@ void ant_test_init(test_loop_t *testIdx, test_config_t *test_config, phaser_ping
         continue;
       }
       ant_a_phase[j++] = ant_a_phase[i];
+    }
+    rand_a_count--;
+    j=0;
+    for(i=0;i<rand_b_count;i++)
+    {
+      if(rand1 == i)
+      {
+        continue;
+      }
+      ant_b_phase[j++] = ant_b_phase[i];
     }
     rand_b_count--;
 }
