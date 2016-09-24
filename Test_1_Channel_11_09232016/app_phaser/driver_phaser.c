@@ -122,10 +122,13 @@ void ant_test_init(test_loop_t *testIdx, test_config_t *test_config, phaser_ping
     {
       ant_b_phase[i] = i * PHASEB_INCREMENTAL;
     }
-    rand2 = timeRand % rand_b_count;
+    //rand2 = timeRand % rand_b_count;
     // Init the antena configuration
     ant_cfg_p->ant.phaseA = ant_a_phase[rand1];
     //ant_cfg_p->ant.phaseB = test_config->ant.phaseB.start;
+    mdelay(rand1);
+    timeRand = getTimeMs();
+    rand1 = timeRand % rand_a_count;
     ant_cfg_p->ant.phaseB = ant_b_phase[rand1];
     j=0;
     for(i=0;i<rand_a_count;i++)
@@ -162,6 +165,8 @@ bool ant_test_next_config(test_loop_t *testIdx, test_config_t *test_config, phas
             }
         }
         else {
+            timeRand = getTimeMs();
+            rand1 = timeRand % rand_b_count;
             ant_cfg_p->ant.phaseA = ant_a_phase[rand1];
             j=0;
             for(i=0;i<rand_a_count;i++)
