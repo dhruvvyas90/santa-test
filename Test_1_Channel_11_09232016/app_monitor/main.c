@@ -38,6 +38,7 @@ uint8_t Sangle[MAX_NO_PACKETS_IN_TEST];
 uint8_t Sphase[MAX_NO_PACKETS_IN_TEST];
 uint8_t SphaseA[MAX_NO_PACKETS_IN_TEST];
 uint8_t SphaseB[MAX_NO_PACKETS_IN_TEST];
+uint32_t rxTime;
 
 // --------------------------------------------
 
@@ -280,7 +281,7 @@ void onRadioRecv(void)
         return;
     }
     flRxProcessing=true;    // There is a chance for a small race condition
-    uint32_t rxTime = getTimeMs();
+    rxTime = getTimeMs();
 // #ifdef PRINT_PACKETS
 //     rxTime = getTimeMs();
 // #endif
