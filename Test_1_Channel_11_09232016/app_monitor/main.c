@@ -36,6 +36,8 @@ int Slqi[MAX_NO_PACKETS_IN_TEST];
 uint8_t Spower[MAX_NO_PACKETS_IN_TEST];
 uint8_t Sangle[MAX_NO_PACKETS_IN_TEST];
 uint8_t Sphase[MAX_NO_PACKETS_IN_TEST];
+uint8_t SphaseA[MAX_NO_PACKETS_IN_TEST];
+uint8_t SphaseB[MAX_NO_PACKETS_IN_TEST];
 
 // --------------------------------------------
 
@@ -203,6 +205,8 @@ inline void processTestMsg(phaser_ping_t * test, rssi_t rssi, lqi_t lqi)
     Spower[packet_count] = exp->power;
     Sangle[packet_count] = exp->angle;
     Sphase[packet_count] = exp->phase;
+    SphaseA[packet_count] = test->ant.phaseA;
+    SphaseB[packet_count] = test->ant.phaseB;
     STREAM_STAT_ADD(exp->rssi_data, rssi);
     STREAM_STAT_ADD(exp->lqi_data, lqi);
 
@@ -258,7 +262,7 @@ void print_serial_dump()
   int i;
   for(i=0;i<packet_count;i++)
   {
-    PRINTF("%ld\t%ld\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t\n",(long)Stimestamp[i], (long)SrxTime[i],(int)SmsgCount[i], (int)SrxIdx[i], (int)Srssi[i], (int)Slqi[i], (int)Spower[i],(int)Sangle[i], (int)Sphase[i]);
+    PRINTF("%ld\t%ld\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\n",(long)Stimestamp[i], (long)SrxTime[i],(int)SmsgCount[i], (int)SrxIdx[i], (int)Srssi[i], (int)Slqi[i], (int)Spower[i],(int)Sangle[i], (int)Sphase[i], (int)SphaseA[i], (int)SphaseB[i]);
   }
 }
 
