@@ -126,7 +126,7 @@ void ant_test_init(test_loop_t *testIdx, test_config_t *test_config, phaser_ping
     // Init the antena configuration
     ant_cfg_p->ant.phaseA = ant_a_phase[rand1];
     //ant_cfg_p->ant.phaseB = test_config->ant.phaseB.start;
-    mdelay(rand1);
+    mdelay(5);
     timeRand = getTimeMs();
     rand1 = timeRand % rand_a_count;
     ant_cfg_p->ant.phaseB = ant_b_phase[rand1];
