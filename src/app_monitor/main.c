@@ -65,6 +65,8 @@ int rxIdx=0;
 
 static bool flRestart=true;
 
+int phaseA;
+int phaseB;
 
 // Prototypes
 void send_ctrl_msg(msg_action_t act);
@@ -149,7 +151,9 @@ void sendTestResults()
             (int) lqi_mean,
 
             (long unsigned int) (rssi_devSq),
-            (long unsigned int) (lqi_devSq)
+            (long unsigned int) (lqi_devSq),
+            (int) phaseA,
+            (int) phaseB
             )
         // debugHexdump((uint8_t *) exp, sizeof(experiment_t));
 
@@ -183,9 +187,11 @@ inline void processTestMsg(phaser_ping_t * test, rssi_t rssi, lqi_t lqi)
     exp->power = test->power;
     exp->angle = test->angle;
     exp->phase = test->ant.phaseA | test->ant.phaseB ;
+    phaseA = test->ant.phaseA;
+    phaseB = test->ant.pahseB;
     STREAM_STAT_ADD(exp->rssi_data, rssi);
     STREAM_STAT_ADD(exp->lqi_data, lqi);
- 
+
     curExp = exp;
     lastExpIdx = test->expIdx;
 }
@@ -306,7 +312,7 @@ void onRadioRecv(void)
         }
         processTestMsg(test_data_p, rssi, lqi);
         break;
-    
+
     case PH_MSG_Angle:
         if(curExp) sendTestResults();
         if( flRestart ){        // Best time to resend the restart message after the angle change

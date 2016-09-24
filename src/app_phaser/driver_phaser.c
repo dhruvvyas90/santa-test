@@ -1,5 +1,5 @@
 // --------------------------------------------
-// Phaser node: digitally controlled beam forming 
+// Phaser node: digitally controlled beam forming
 // The driver.
 // Compile target: phaser
 // --------------------------------------------
@@ -31,28 +31,28 @@ test_config_t testSet[] = {
         .angle_step  = 5,
         .angle_count = 40,
         .ant.phaseA.start = 0,
-        .ant.phaseA.step  = 0,
-        .ant.phaseA.count = 0,
+        .ant.phaseA.step  = 16,
+        .ant.phaseA.count = 16,
         .ant.phaseB.start = 0,
-        .ant.phaseB.step  = 32,
-        .ant.phaseB.count = 8,
-        .power = {15, 0}
-    },
-    {
-        .platform_id = PLATFORM_ID,     // Longer test
-        .start_delay = 100,
-        .send_delay  = 5,
-        .send_count  = 100,
-        .angle_step  = 5,
-        .angle_count = 40,
-        .ant.phaseA.start = 0,
-        .ant.phaseA.step  = 0,
-        .ant.phaseA.count = 0,
-        .ant.phaseB.start = 0,
-        .ant.phaseB.step  = 1,
-        .ant.phaseB.count = 256,
+        .ant.phaseB.step  = 16,
+        .ant.phaseB.count = 16,
         .power = {31, 0}
     },
+    //{
+    //    .platform_id = PLATFORM_ID,     // Longer test
+    //    .start_delay = 100,
+    //    .send_delay  = 5,
+    //    .send_count  = 100,
+    //    .angle_step  = 5,
+    //    .angle_count = 40,
+    //    .ant.phaseA.start = 0,
+    //    .ant.phaseA.step  = 0,
+    //    .ant.phaseA.count = 0,
+    //    .ant.phaseB.start = 0,
+    //    .ant.phaseB.step  = 1,
+    //    .ant.phaseB.count = 256,
+    //    .power = {31, 0}
+    //},
     // {
     //     .platform_id = PLATFORM_ID,     // Longer test
     //     .start_delay = 200,
@@ -83,7 +83,7 @@ void ant_driver_init()
 // -------------------------------------------------------------------------
 // -------------------------------------------------------------------------
 bool ant_test_sanity_check(test_config_t *newTest)
-{    
+{
     return true;
 }
 
@@ -99,7 +99,7 @@ void ant_test_init(test_loop_t *testIdx, test_config_t *test_config, phaser_ping
     testIdx->phaseB.idx = 0;
     testIdx->phaseB.limit = test_config->ant.phaseB.count;
 
-    // Init the antena configuration 
+    // Init the antena configuration
     ant_cfg_p->ant.phaseA = test_config->ant.phaseA.start;
     ant_cfg_p->ant.phaseB = test_config->ant.phaseB.start;
 }
@@ -124,7 +124,7 @@ bool ant_test_next_config(test_loop_t *testIdx, test_config_t *test_config, phas
             ant_cfg_p->ant.phaseA += test_config->ant.phaseA.step;
             return true;
         }
-    } 
+    }
     if(test_config->ant.phaseB.count){
         testIdx->phaseB.idx++;
         if( testIdx->phaseB.idx >= testIdx->phaseB.limit ){
@@ -161,7 +161,7 @@ void ledBtnDown()
         mdelay(100);
         ledOff();
         mdelay(100);
-    }    
+    }
 }
 
 // -------------------------------------------------------------------------
@@ -172,7 +172,7 @@ bool ant_check_button()
     ledBtnDown();
     while( PHASER_BTN_DOWN() ){   // Wait untill button released
         ledBtnDown();
-    } 
+    }
 
     return true;
 }
