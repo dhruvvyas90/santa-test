@@ -132,6 +132,7 @@ void sendTestResults()
             // "\t%d\t%d\t%d\t%d\t%ld"
             "\t%d\t%d\t%d"
             "\t%ld\t%ld"
+            "\t%d\t%d"
             "\n",
             (int) lastExpIdx,
 
@@ -188,7 +189,7 @@ inline void processTestMsg(phaser_ping_t * test, rssi_t rssi, lqi_t lqi)
     exp->angle = test->angle;
     exp->phase = test->ant.phaseA | test->ant.phaseB ;
     phaseA = test->ant.phaseA;
-    phaseB = test->ant.pahseB;
+    phaseB = test->ant.phaseB;
     STREAM_STAT_ADD(exp->rssi_data, rssi);
     STREAM_STAT_ADD(exp->lqi_data, lqi);
 
