@@ -17,10 +17,10 @@
 // -------------------------------------------------------------------------
 char *ant_driver_name = "Phaser";
 #define PLATFORM_ID  PH_PHASER
-#define NO_OF_PHASEA 33
-#define NO_OF_PHASEB 33
-#define PHASEA_INCREMENTAL 8
-#define PHASEB_INCREMENTAL 8
+#define NO_OF_PHASEA 8
+#define NO_OF_PHASEB 8
+#define PHASEA_INCREMENTAL 32
+#define PHASEB_INCREMENTAL 32
 
 uint32_t timeRand;
 uint8_t rand1;
