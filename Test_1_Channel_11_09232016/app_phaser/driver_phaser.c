@@ -167,6 +167,8 @@ bool ant_test_next_config(test_loop_t *testIdx, test_config_t *test_config, phas
     uint8_t j;
     // Next phase
     if(test_config->ant.phaseA.count){
+        timeRand = getTimeMs();
+        rand1 = timeRand % rand_b_count;
         testIdx->phaseA.idx++;
         if( testIdx->phaseA.idx >= testIdx->phaseA.limit ){
             testIdx->phaseA.idx = 0;
@@ -175,6 +177,17 @@ bool ant_test_next_config(test_loop_t *testIdx, test_config_t *test_config, phas
             {
               ant_a_phase[i] = i * PHASEA_INCREMENTAL;
             }
+            ant_cfg_p->ant.phaseA = ant_a_phase[rand1];
+            j=0;
+            for(i=0;i<rand_a_count;i++)
+            {
+              if(rand1 != i)
+              {
+                ant_a_phase[j] = ant_a_phase[i];
+                j++;
+              }
+            }
+            rand_a_count--;
         }
         else {
             timeRand = getTimeMs();
@@ -217,6 +230,17 @@ bool ant_test_next_config(test_loop_t *testIdx, test_config_t *test_config, phas
             {
               ant_b_phase[i] = i * PHASEB_INCREMENTAL;
             }
+            ant_cfg_p->ant.phaseB = ant_b_phase[rand1];
+            j=0;
+            for(i=0;i<rand_b_count;i++)
+            {
+              if(rand1 != i)
+              {
+                ant_b_phase[j] = ant_b_phase[i];
+                j++;
+              }
+            }
+            rand_b_count--;
         }
         else
         {

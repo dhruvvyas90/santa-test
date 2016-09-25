@@ -150,7 +150,6 @@ void sendTestResults()
             (int) exp->rssi_data.num,
             (int) rssi_mean,
             (int) lqi_mean,
-
             (long unsigned int) (rssi_devSq),
             (long unsigned int) (lqi_devSq),
             (int) phaseA,
