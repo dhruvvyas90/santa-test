@@ -131,13 +131,7 @@ void sendTestResults()
         rssi_devSq = STREAM_STAT_DEVIATION_SQUARED(exp->rssi_data);
         lqi_mean = STREAM_STAT_MEAN(exp->lqi_data);
         lqi_devSq = STREAM_STAT_DEVIATION_SQUARED(exp->lqi_data);
-        sprintf(text_data,"Test:
-             \t%d
-             \t%d\t%d\t%d
-             \t%d\t%d\t%d
-             \t%ld\t%ld
-             \t%d\t%d
-             \n",
+        sprintf(text_data,"Test:%d %d %d %d %d %d %d %ld %ld %d %d\n",
              (int) lastExpIdx,
         //
              (int) exp->power,
