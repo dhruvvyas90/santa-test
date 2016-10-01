@@ -24,7 +24,8 @@ enum {
     PH_MSG_Control = 'C',
     PH_MSG_Config = 'G',
     PH_MSG_Test = 'T',      // Test message, like ping, but with configuration
-    PH_MSG_Text = 'X'
+    PH_MSG_Text = 'X',
+    PH_MSG_Done = 'D',
 };
 
 
@@ -187,6 +188,12 @@ typedef struct
     msg_action_t action;
 } __attribute__((packed))
 phaser_control_t;
+
+typedef struct
+{
+  uint8_t done;
+} __attribute__((packed))
+done_msg_t;
 
 
 //===========================================

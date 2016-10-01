@@ -36,17 +36,17 @@ test_config_t testSet[] = {
         .ant.phaseB.count = 0,
         .power = {31, 0}
     },
-    //{
-    //    .platform_id = PLATFORM_ID,     // Longer test
-    //    .start_delay = 1000,
-    //    .send_delay  = 5,
-    //    .send_count  = 100,
-    //    .angle_step  = 5,
-    //    .angle_count = 40,
-    //    .ant.phaseA.count = 0,
-    //    .ant.phaseB.count = 0,
-    //    .power = {31, 23, 15, 7, 3, 0}
-    //}
+    // {
+    //     .platform_id = PLATFORM_ID,     // Longer test
+    //     .start_delay = 1000,
+    //     .send_delay  = 5,
+    //     .send_count  = 100,
+    //     .angle_step  = 5,
+    //     .angle_count = 40,
+    //     .ant.phaseA.count = 0,
+    //     .ant.phaseB.count = 0,
+    //     .power = {31, 23, 15, 7, 3, 0}
+    // }
 };
 const size_t testSet_size = sizeof(testSet)/sizeof(testSet[0]);
 

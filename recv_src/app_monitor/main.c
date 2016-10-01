@@ -15,8 +15,6 @@
 
 
 #define RATE_DELAY 200
-#define RADIOCHANNEL 11
-#define RADIO_MAX_TX_POWER 31
 
 // Phaser control message(s)
 MSG_NEW_WITH_ID(ctrl_msg, phaser_control_t, PH_MSG_Control);
@@ -24,9 +22,6 @@ phaser_control_t *ctrl_data_p = &(ctrl_msg.payload);
 
 // Define a buffer for receiving messages
 MSG_DEFINE_BUFFER_WITH_ID(radioBuffer, recv_data_p, RADIO_MAX_PACKET);
-
-// Phaser test configuration message
-MSG_NEW_WITH_ID(text_msg, msg_text_data_t, PH_MSG_Text);
 
 
 // --------------------------------------------
@@ -63,8 +58,6 @@ test_config_t test_config = {
 
 static experiment_t experiment[NUM_EXPS];
 experiment_t * curExp = NULL;
-
-char text_data[100];
 
 int lastExpIdx=0;
 
@@ -132,30 +125,38 @@ void sendTestResults()
         rssi_devSq = STREAM_STAT_DEVIATION_SQUARED(exp->rssi_data);
         lqi_mean = STREAM_STAT_MEAN(exp->lqi_data);
         lqi_devSq = STREAM_STAT_DEVIATION_SQUARED(exp->lqi_data);
-        sprintf(text_data,"Test:%d %d %d %d %d %d %d %ld %ld %d %d\n",
-             (int) lastExpIdx,
-        //
-             (int) exp->power,
-             (int) exp->angle,
-             (int) exp->phase,
+        PRINTF("Test:"
+            "\t%d"
+            "\t%d\t%d\t%d"
+            // "\t%d\t%d\t%d\t%d\t%ld"
+            // "\t%d\t%d\t%d\t%d\t%ld"
+            "\t%d\t%d\t%d"
+            "\t%ld\t%ld"
+            "\t%d\t%d"
+            "\n",
+            (int) lastExpIdx,
 
-             // (int) exp->rssi_data.sum,
-             // (int) exp->rssi_data.sum_squares,
+            (int) exp->power,
+            (int) exp->angle,
+            (int) exp->phase,
 
-             // (int) exp->lqi_data.num,
-             // (int) exp->lqi_data.sum,
-             // (int) exp->lqi_data.sum_squares,
-        //
-             (int) exp->rssi_data.num,
-             (int) rssi_mean,
-             (int) lqi_mean,
-             (long unsigned int) (rssi_devSq),
-             (long unsigned int) (lqi_devSq),
-             (int) phaseA,
-             (int) phaseB
-           );
-        // // debugHexdump((uint8_t *) exp, sizeof(experiment_t));
-        send_string(text_data);
+            // (int) exp->rssi_data.sum,
+            // (int) exp->rssi_data.sum_squares,
+
+            // (int) exp->lqi_data.num,
+            // (int) exp->lqi_data.sum,
+            // (int) exp->lqi_data.sum_squares,
+
+            (int) exp->rssi_data.num,
+            (int) rssi_mean,
+            (int) lqi_mean,
+            (long unsigned int) (rssi_devSq),
+            (long unsigned int) (lqi_devSq),
+            (int) phaseA,
+            (int) phaseB
+            )
+        // debugHexdump((uint8_t *) exp, sizeof(experiment_t));
+
         // Clear data
         exp->power = 0;
         exp->angle = 0;
@@ -193,20 +194,6 @@ inline void processTestMsg(phaser_ping_t * test, rssi_t rssi, lqi_t lqi)
 
     curExp = exp;
     lastExpIdx = test->expIdx;
-}
-
-//
-
-// -------------------------------------------------------------------------
-// -------------------------------------------------------------------------
-void send_string(char *str)
-{
-    int len = strlen(str);
-    if(len>0 && len<MSG_TEXT_SIZE_MAX-1){
-        memcpy(text_msg.payload.text, str, len);
-        radioSetTxPower(RADIO_MAX_TX_POWER);
-        MSG_RADIO_SEND( text_msg );
-    }
 }
 
 // --------------------------------------------
@@ -366,7 +353,6 @@ void onRadioRecv(void)
 // --------------------------------------------
 void appMain(void)
 {
-    radioSetChannel(RADIOCHANNEL);
     serialEnableRX(PRINTF_SERIAL_ID);
     // serialSetReceiveHandle(PRINTF_SERIAL_ID, onSerRecv);
     serialSetPacketReceiveHandle(PRINTF_SERIAL_ID, onSerRecv, serBuffer, SER_BUF_SIZE);

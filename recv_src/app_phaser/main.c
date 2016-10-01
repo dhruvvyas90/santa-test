@@ -17,9 +17,6 @@
 #define RADIO_MAX_TX_POWER 31
 #define RADIO_BUF_PAYLOAD_LEN RADIO_MAX_PACKET
 
-#define RADIOCHANNEL 11
-
-
 
 //--- Test setup ----------------------
 test_config_t test_config;
@@ -59,6 +56,10 @@ MSG_NEW_WITH_ID(config_msg, test_config_t, PH_MSG_Config);
 
 // Phaser test configuration message
 MSG_NEW_WITH_ID(text_msg, msg_text_data_t, PH_MSG_Text);
+
+//phaser done msg
+MSG_NEW_WITH_ID(done_msg, done_msg_t, PH_MSG_Done);
+
 
 
 // -------------------------------------------------------------------------
@@ -145,6 +146,23 @@ void send_ctrl_msg(msg_action_t act)
     }
 }
 
+//--------------------------------------------------------------------------
+//--------------------------------------------------------------------------
+
+void send_done_msg(uint8_t data)
+{
+  int i;
+  done_msg.payload.done = data;
+  MSG_DO_CHECKSUM( done_msg );
+  // Send 3 times for reliability.
+  radioSetTxPower(RADIO_MAX_TX_POWER);
+  mdelay(20);
+  //for(i=0; i<3; i++){
+  MSG_RADIO_SEND(done_msg);
+  mdelay(100);
+  //}
+}
+
 // -------------------------------------------------------------------------
 // -------------------------------------------------------------------------
 void send_string(char *str)
@@ -152,7 +170,6 @@ void send_string(char *str)
     int len = strlen(str);
     if(len>0 && len<MSG_TEXT_SIZE_MAX-1){
         memcpy(text_msg.payload.text, str, len);
-
         radioSetTxPower(RADIO_MAX_TX_POWER);
         MSG_RADIO_SEND( text_msg );
     }
@@ -417,7 +434,7 @@ void appMain(void)
 #endif
 
     ant_driver_init();
-    radioSetChannel(RADIOCHANNEL);
+
     radioSetReceiveHandle(onRadioRecv);
     radioOn();
 
@@ -436,11 +453,14 @@ void appMain(void)
         while( !fl_test_restart && !fl_test_stop )
         {
             ledToggle();
+
             test_step();
             if( ! test_next() ){
                 send_ctrl_msg(MSG_ACT_DONE);
                 break;
             }
+            send_done_msg();
+
             if( ant_check_button() ) fl_test_restart = true;
         }
         // Test done!
