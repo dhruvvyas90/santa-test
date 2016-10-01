@@ -15,6 +15,8 @@
 
 
 #define RATE_DELAY 200
+#define MAX_NO_OF_PACKET 100
+#define RADIOCHANNEL 11
 
 // Phaser control message(s)
 MSG_NEW_WITH_ID(ctrl_msg, phaser_control_t, PH_MSG_Control);
@@ -22,6 +24,9 @@ phaser_control_t *ctrl_data_p = &(ctrl_msg.payload);
 
 // Define a buffer for receiving messages
 MSG_DEFINE_BUFFER_WITH_ID(radioBuffer, recv_data_p, RADIO_MAX_PACKET);
+
+//phaser done msg
+MSG_NEW_WITH_ID(echo_msg, echo_msg_t, PH_MSG_Echo);
 
 
 // --------------------------------------------
@@ -47,7 +52,10 @@ test_config_t test_config = {
     },
 };
 
-
+int8_t Srssi[MAX_NO_OF_PACKET];
+int8_t Slqi[MAX_NO_OF_PACKET];
+uint32_t Srxid[MAX_NO_OF_PACKET];
+int packet_count = 0;
 
 
 
@@ -104,6 +112,25 @@ void send_ctrl_msg(msg_action_t act)
     ctrl_msg.payload.action = act;
     MSG_DO_CHECKSUM( ctrl_msg );
     MSG_RADIO_SEND( ctrl_msg );
+}
+
+void send_echo_msg()
+{
+  int i;
+  for(i=0;i<9;i++)
+  {
+    echo_msg.payload.rssi[i] = Srssi[i];
+    echo_msg.payload.rssi[i] = Slqi[i];
+    echo_msg.payload.rxIdx[i] = Srxid[i];
+  }
+  MSG_DO_CHECKSUM( echo_msg );
+  // Send 3 times for reliability.
+  radioSetTxPower(RADIO_MAX_TX_POWER);
+  mdelay(20);
+  //for(i=0; i<3; i++){
+  MSG_RADIO_SEND(echo_msg);
+  mdelay(100);
+  //}
 }
 
 // --------------------------------------------
@@ -310,6 +337,14 @@ void onRadioRecv(void)
         if(lastExpIdx != test_data_p->expIdx && curExp){
             sendTestResults();
         }
+        Srssi[packet_count] = rssi;
+        Slqi[packet_count] = lqi;
+        Srxid[packet_count] = rxIdx;
+        packet_count++;
+        if(packet_count > MAX_NO_OF_PACKET)
+        {
+          packet_count = 0;
+        }
         processTestMsg(test_data_p, rssi, lqi);
         break;
 
@@ -343,6 +378,12 @@ void onRadioRecv(void)
         PRINTF("Config received:\n");
         // TODO: parse the config and print
         print_test_config(test_config_p);
+        break;
+
+    case PH_MSG_Done:
+        send_echo_msg();
+        packet_count = 0;
+        break;
     }
 
 
@@ -356,7 +397,7 @@ void appMain(void)
     serialEnableRX(PRINTF_SERIAL_ID);
     // serialSetReceiveHandle(PRINTF_SERIAL_ID, onSerRecv);
     serialSetPacketReceiveHandle(PRINTF_SERIAL_ID, onSerRecv, serBuffer, SER_BUF_SIZE);
-
+    radioSetChannel(RADIOCHANNEL);
     radioSetReceiveHandle(onRadioRecv);
     radioOn();
     mdelay(200);

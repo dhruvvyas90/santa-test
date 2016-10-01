@@ -191,6 +191,14 @@ phaser_control_t;
 
 typedef struct
 {
+  int8_t rssi[9];
+  int8_t lqi[9];
+  uint32_t rxIdx[9];
+} __attribute__((packed))
+echo_msg_t;
+
+typedef struct
+{
   uint8_t done;
 } __attribute__((packed))
 done_msg_t;

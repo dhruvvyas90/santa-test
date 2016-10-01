@@ -16,6 +16,7 @@
 
 #define RADIO_MAX_TX_POWER 31
 #define RADIO_BUF_PAYLOAD_LEN RADIO_MAX_PACKET
+#define RADIOCHANNEL 11
 
 
 //--- Test setup ----------------------
@@ -204,6 +205,18 @@ void test_stop()
     send_ctrl_msg(MSG_ACT_IDLE);
 }
 
+//------
+//------
+
+void print_echo_msg(echo_msg_t *e)
+{
+  int i;
+  for(i=0;i<9;i++)
+  {
+    PRINTF("%ld\t%d\t%d\n",(long)e->rxIdx[i],e->rssi[i],e->lqi[i]);
+  }
+}
+
 // -------------------------------------------------------------------------
 //  Radio reveive handler
 // -------------------------------------------------------------------------
@@ -230,6 +243,7 @@ void onRadioRecv(void)
     MSG_NEW_PAYLOAD_PTR(radioBuffer, phaser_angle_t, angle_p);
     MSG_NEW_PAYLOAD_PTR(radioBuffer, phaser_control_t, control_p);
     MSG_NEW_PAYLOAD_PTR(radioBuffer, test_config_t, test_p);
+    MSG_NEW_PAYLOAD_PTR(radioBuffer, echo_msg_t, echo_p);
 
 
     switch( radioBuffer.id ){
@@ -258,6 +272,10 @@ void onRadioRecv(void)
     case PH_MSG_Config:
         config_new(test_p);
         fl_test_restart = true;
+        break;
+
+    case PH_MSG_Echo:
+        print_echo_msg(echo_p);
         break;
     }
     // Rx processing done
@@ -434,7 +452,7 @@ void appMain(void)
 #endif
 
     ant_driver_init();
-
+    radioSetChannel(RADIOCHANNEL);
     radioSetReceiveHandle(onRadioRecv);
     radioOn();
 
@@ -459,8 +477,8 @@ void appMain(void)
                 send_ctrl_msg(MSG_ACT_DONE);
                 break;
             }
-            send_done_msg();
-
+            send_done_msg(1);
+            mdelay(1000);
             if( ant_check_button() ) fl_test_restart = true;
         }
         // Test done!
