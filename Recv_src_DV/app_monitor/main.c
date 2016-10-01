@@ -121,7 +121,7 @@ void send_echo_msg()
   for(i=0;i<9;i++)
   {
     echo_msg.payload.rssi[i] = Srssi[i];
-    echo_msg.payload.rssi[i] = Slqi[i];
+    echo_msg.payload.lqi[i] = Slqi[i];
     echo_msg.payload.rxIdx[i] = Srxid[i];
   }
   MSG_DO_CHECKSUM( echo_msg );
