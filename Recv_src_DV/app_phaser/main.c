@@ -16,7 +16,7 @@
 
 #define RADIO_MAX_TX_POWER 31
 #define RADIO_BUF_PAYLOAD_LEN RADIO_MAX_PACKET
-#define RADIOCHANNEL 11
+#define RADIOCHANNEL 26
 
 
 //--- Test setup ----------------------
@@ -482,6 +482,7 @@ void appMain(void)
             if( ant_check_button() ) fl_test_restart = true;
         }
         // Test done!
+        continue;
 
         while( !fl_test_restart || fl_test_stop )
         {
