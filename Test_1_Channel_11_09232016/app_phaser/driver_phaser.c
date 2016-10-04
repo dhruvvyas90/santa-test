@@ -152,8 +152,8 @@ void ant_test_init(test_loop_t *testIdx, test_config_t *test_config, phaser_ping
       ant_b_phase[j++] = ant_b_phase[i];
     }
     rand_b_count--;
-    ant_cfg_p->ant.phaseA = 0;
-    ant_cfg_p->ant.phaseB = 0;
+    //ant_cfg_p->ant.phaseA = 0;
+    //ant_cfg_p->ant.phaseB = 0;
 }
 
 
@@ -190,7 +190,7 @@ bool ant_test_next_config(test_loop_t *testIdx, test_config_t *test_config, phas
               }
             }
             rand_a_count--;
-            ant_cfg_p->ant.phaseA = 0;
+            //ant_cfg_p->ant.phaseA = 0;
         }
         else {
             timeRand = getTimeMs();
@@ -206,7 +206,7 @@ bool ant_test_next_config(test_loop_t *testIdx, test_config_t *test_config, phas
               }
             }
             rand_a_count--;
-            ant_cfg_p->ant.phaseA = 0;
+            //ant_cfg_p->ant.phaseA = 0;
             return true;
         }
     }
@@ -245,7 +245,7 @@ bool ant_test_next_config(test_loop_t *testIdx, test_config_t *test_config, phas
               }
             }
             rand_b_count--;
-            ant_cfg_p->ant.phaseB = 0;
+            //ant_cfg_p->ant.phaseB = 0;
         }
         else
         {
@@ -259,8 +259,8 @@ bool ant_test_next_config(test_loop_t *testIdx, test_config_t *test_config, phas
                 j++;
               }
             }
-            rand_b_count--; 
-            ant_cfg_p->ant.phaseB = 0;
+            rand_b_count--;
+            //ant_cfg_p->ant.phaseB = 0;
             return true;
         }
     }
