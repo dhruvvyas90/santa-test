@@ -36,7 +36,7 @@ APPMOD = RxMonitor
 
 PROJDIR = $(CURDIR)
 ifndef MOSROOT
-  MOSROOT = /opt/MansOS
+  MOSROOT = ./../../../../../MansOS
 endif
 
 include ${MOSROOT}/mos/make/Makefile
