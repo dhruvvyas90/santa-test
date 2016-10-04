@@ -48,7 +48,7 @@ test_config_t testSet[] = {
         .ant.phaseB.start = 0,
         .ant.phaseB.step  = 32,
         .ant.phaseB.count = 8,
-        .power = {7, 0}
+        .power = {31, 0}
     },
     // {
     //     .platform_id = PLATFORM_ID,     // Longer test
@@ -136,7 +136,7 @@ void ant_test_init(test_loop_t *testIdx, test_config_t *test_config, phaser_ping
       }
       ant_a_phase[j++] = ant_a_phase[i];
     }
-    rand_a_count--; 
+    rand_a_count--;
     //ant_cfg_p->ant.phaseB = test_config->ant.phaseB.start;
     mdelay(5);
     timeRand = getTimeMs();
@@ -152,6 +152,8 @@ void ant_test_init(test_loop_t *testIdx, test_config_t *test_config, phaser_ping
       ant_b_phase[j++] = ant_b_phase[i];
     }
     rand_b_count--;
+    ant_cfg_p->ant.phaseA = 0;
+    ant_cfg_p->ant.phaseB = 0;
 }
 
 
@@ -188,6 +190,7 @@ bool ant_test_next_config(test_loop_t *testIdx, test_config_t *test_config, phas
               }
             }
             rand_a_count--;
+            ant_cfg_p->ant.phaseA = 0;
         }
         else {
             timeRand = getTimeMs();
@@ -203,6 +206,7 @@ bool ant_test_next_config(test_loop_t *testIdx, test_config_t *test_config, phas
               }
             }
             rand_a_count--;
+            ant_cfg_p->ant.phaseA = 0;
             return true;
         }
     }
@@ -241,6 +245,7 @@ bool ant_test_next_config(test_loop_t *testIdx, test_config_t *test_config, phas
               }
             }
             rand_b_count--;
+            ant_cfg_p->ant.phaseB = 0;
         }
         else
         {
@@ -254,7 +259,8 @@ bool ant_test_next_config(test_loop_t *testIdx, test_config_t *test_config, phas
                 j++;
               }
             }
-            rand_b_count--;
+            rand_b_count--; 
+            ant_cfg_p->ant.phaseB = 0;
             return true;
         }
     }
