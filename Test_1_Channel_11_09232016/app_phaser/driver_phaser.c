@@ -48,7 +48,7 @@ test_config_t testSet[] = {
         .ant.phaseB.start = 0,
         .ant.phaseB.step  = 32,
         .ant.phaseB.count = 8,
-        .power = {31, 0}
+        .power = {7, 0}
     },
     // {
     //     .platform_id = PLATFORM_ID,     // Longer test
