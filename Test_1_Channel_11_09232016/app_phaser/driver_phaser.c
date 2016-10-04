@@ -110,7 +110,7 @@ void o_seed (unsigned int seed)
 
 int o_rand (void)
 {
-    return(((holdrand = holdrand * 214013L + 2531011L) >> 16) & 0x7fff);
+    return(((holdrand = holdrand * 214013 + 2531011) >> 16) & 0x7fff);
 }
 
 
@@ -121,7 +121,7 @@ void ant_test_init(test_loop_t *testIdx, test_config_t *test_config, phaser_ping
 {
     int i;
     int j;
-    o_seed(1234);
+    //o_seed(1234);
     // Init the iterators
     testIdx->phaseA.idx = 0;
     testIdx->phaseA.limit = test_config->ant.phaseA.count;

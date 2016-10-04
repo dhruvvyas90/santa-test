@@ -447,7 +447,7 @@ void appMain(void)
 #ifdef DEBUG_PHASER
     PRINTF("Phaser started\n");
 #endif
-
+    o_seed(1234);
     ant_driver_init();
 
     radioSetChannel(RADIOCHANNEL);
