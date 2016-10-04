@@ -31,6 +31,8 @@ uint8_t ant_b_phase[NO_OF_PHASEB];
 uint8_t rand_a_count = NO_OF_PHASEA;
 uint8_t rand_b_count = NO_OF_PHASEB;
 
+long holdrand;
+
 // -------------------------------------------------------------------------
 // Set of test configurations that should be executed
 // -------------------------------------------------------------------------
@@ -99,6 +101,18 @@ bool ant_test_sanity_check(test_config_t *newTest)
     return true;
 }
 
+//random functions
+
+void o_seed (unsigned int seed)
+{
+    holdrand = (long)seed;
+}
+
+int o_rand (void)
+{
+    return(((holdrand = holdrand * 214013L + 2531011L) >> 16) & 0x7fff);
+}
+
 
 // -------------------------------------------------------------------------
 // Setup the test run (Antena parameters)
@@ -107,6 +121,7 @@ void ant_test_init(test_loop_t *testIdx, test_config_t *test_config, phaser_ping
 {
     int i;
     int j;
+    o_seed(1234);
     // Init the iterators
     testIdx->phaseA.idx = 0;
     testIdx->phaseA.limit = test_config->ant.phaseA.count;
@@ -114,8 +129,8 @@ void ant_test_init(test_loop_t *testIdx, test_config_t *test_config, phaser_ping
     testIdx->phaseB.limit = test_config->ant.phaseB.count;
     rand_a_count = NO_OF_PHASEA;
     rand_b_count = NO_OF_PHASEB;
-    timeRand = getTimeMs();
-    rand1 = timeRand % rand_a_count;
+    //timeRand = getTimeMs();
+    rand1 = o_rand() % rand_a_count;
     for(i=0;i<NO_OF_PHASEA;i++)
     {
       ant_a_phase[i] = i * PHASEA_INCREMENTAL;
@@ -138,9 +153,8 @@ void ant_test_init(test_loop_t *testIdx, test_config_t *test_config, phaser_ping
     }
     rand_a_count--;
     //ant_cfg_p->ant.phaseB = test_config->ant.phaseB.start;
-    mdelay(5);
-    timeRand = getTimeMs();
-    rand1 = timeRand % rand_b_count;
+    //timeRand = getTimeMs();
+    rand1 = o_rand() % rand_b_count;
     ant_cfg_p->ant.phaseB = ant_b_phase[rand1];
     j=0;
     for(i=0;i<rand_b_count;i++)
@@ -169,8 +183,8 @@ bool ant_test_next_config(test_loop_t *testIdx, test_config_t *test_config, phas
     uint8_t j;
     // Next phase
     if(test_config->ant.phaseA.count){
-        timeRand = getTimeMs();
-        rand1 = timeRand % rand_b_count;
+        //timeRand = getTimeMs();
+        rand1 = o_rand() % rand_b_count;
         testIdx->phaseA.idx++;
         if( testIdx->phaseA.idx >= testIdx->phaseA.limit ){
             testIdx->phaseA.idx = 0;
@@ -193,8 +207,8 @@ bool ant_test_next_config(test_loop_t *testIdx, test_config_t *test_config, phas
             //ant_cfg_p->ant.phaseA = 0;
         }
         else {
-            timeRand = getTimeMs();
-            rand1 = timeRand % rand_a_count;
+            //timeRand = getTimeMs();
+            rand1 = o_rand() % rand_a_count;
             ant_cfg_p->ant.phaseA = ant_a_phase[rand1];
             j=0;
             for(i=0;i<rand_a_count;i++)
@@ -223,8 +237,8 @@ bool ant_test_next_config(test_loop_t *testIdx, test_config_t *test_config, phas
     // }
     if(test_config->ant.phaseB.count)
     {
-        timeRand = getTimeMs();
-        rand1 = timeRand % rand_b_count;
+        //timeRand = getTimeMs();
+        rand1 = o_rand() % rand_b_count;
         testIdx->phaseB.idx++;
         if( testIdx->phaseB.idx >= testIdx->phaseB.limit )
         {
