@@ -16,7 +16,7 @@
 
 #define RATE_DELAY 200
 #define MAX_NO_PACKETS_IN_TEST 100
-#define RADIOCHANNEL 11
+#define RADIOCHANNEL 26
 
 // Phaser control message(s)
 MSG_NEW_WITH_ID(ctrl_msg, phaser_control_t, PH_MSG_Control);
@@ -39,6 +39,8 @@ uint8_t Sphase[MAX_NO_PACKETS_IN_TEST];
 uint8_t SphaseA[MAX_NO_PACKETS_IN_TEST];
 uint8_t SphaseB[MAX_NO_PACKETS_IN_TEST];
 uint32_t rxTime;
+
+int rxLocked = 0;
 
 // --------------------------------------------
 
@@ -208,8 +210,8 @@ inline void processTestMsg(phaser_ping_t * test, rssi_t rssi, lqi_t lqi)
     Sphase[packet_count] = exp->phase;
     SphaseA[packet_count] = test->ant.phaseA;
     SphaseB[packet_count] = test->ant.phaseB;
-    STREAM_STAT_ADD(exp->rssi_data, rssi);
-    STREAM_STAT_ADD(exp->lqi_data, lqi);
+    //STREAM_STAT_ADD(exp->rssi_data, rssi);
+    //STREAM_STAT_ADD(exp->lqi_data, lqi);
 
     curExp = exp;
     lastExpIdx = test->expIdx;
@@ -278,6 +280,8 @@ void onRadioRecv(void)
 #ifdef PRINT_PACKETS
         PRINTF("RX Locked\n");
 #endif
+        rxLocked++;
+        PRINTF("RX Locked %d\n", rxLocked);
         return;
     }
     flRxProcessing=true;    // There is a chance for a small race condition
@@ -289,8 +293,7 @@ void onRadioRecv(void)
     rssi_t rssi;
     lqi_t lqi;
 
-    rxIdx++;
-    if( rxIdx < 0 ) rxIdx=0;
+
 
 
     led1Toggle();
@@ -346,6 +349,7 @@ void onRadioRecv(void)
         if(lastExpIdx != test_data_p->expIdx && curExp){
             sendTestResults();
         }
+
         SrxTime[packet_count] = rxTime;
         Stimestamp[packet_count] = test_data_p->timestamp;
         SmsgCount[packet_count] = test_data_p->msgCounter;
@@ -357,6 +361,8 @@ void onRadioRecv(void)
 #endif
 	      processTestMsg(test_data_p, rssi, lqi);
         packet_count++;
+        rxIdx++;
+        if( rxIdx < 0 ) rxIdx=0;
         break;
 
     case PH_MSG_Angle:
