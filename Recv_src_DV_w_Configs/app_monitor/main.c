@@ -9,6 +9,7 @@
 #include "stdmansos.h"
 #include "../phaser_msg.h"
 #include "../db_framework.h"
+#include "phaser_hw.h"
 
 // Comment below for less output
 // #define PRINT_PACKETS 1
