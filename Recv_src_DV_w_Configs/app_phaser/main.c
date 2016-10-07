@@ -492,12 +492,12 @@ void appMain(void)
         {
             ledToggle();
             test_step();
+            send_done_msg(1);
+            mdelay(1000);
             if( ! test_next() ){
                 send_ctrl_msg(MSG_ACT_DONE);
                 break;
             }
-            send_done_msg(1);
-            mdelay(3000);
             if( ant_check_button() ) fl_test_restart = true;
         }
         // Test done!
