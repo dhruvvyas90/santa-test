@@ -27,8 +27,8 @@ char *ant_driver_name = "TelosB";
 test_config_t testSet[] = {
     {
         .platform_id = PLATFORM_ID,     // Short test
-        .start_delay = 1000,
-        .send_delay  = 5,
+        .start_delay = 100,
+        .send_delay  = 1,
         .send_count  = 9,
         .angle_step  = 5,
         .angle_count = 40,
