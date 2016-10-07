@@ -293,6 +293,7 @@ void onRadioRecv(void)
 
     case PH_MSG_Echo:
         print_echo_msg(echo_p);
+        mdelay(1000);
         break;
 
     }
@@ -496,7 +497,7 @@ void appMain(void)
                 break;
             }
             send_done_msg(1);
-            mdelay(1000);
+            mdelay(3000);
             if( ant_check_button() ) fl_test_restart = true;
         }
         // Test done!
