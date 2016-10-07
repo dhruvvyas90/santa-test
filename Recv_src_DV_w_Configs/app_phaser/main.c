@@ -230,7 +230,7 @@ void print_echo_msg(echo_msg_t *e)
   int i;
   for(i=0;i<9;i++)
   {
-    PRINTF("%ld\t%d\t%d\t%d\t%d\n",(long)e->rxIdx[i],e->rssi[i],e->lqi[i],e->phaseA,e->phaseB);
+    PRINTF("%ld\t%d\t%d\t%d\t%d\t%d\n",(long)e->rxIdx[i],e->rssi[i],e->lqi[i],ant_cfg_p->angle,e->phaseA,e->phaseB);
   }
 }
 
@@ -397,9 +397,9 @@ bool test_next()
     }
     else {
         ant_cfg_p->angle += test_config.angle_step;
+        //PRINTF("Angle: %d\n",ant_cfg_p->angle);
         return true;
     }
-    PRINTF("Angle: %d\n",ant_cfg_p->angle);
 
     // Next test setup configuration
     send_ctrl_msg(MSG_ACT_DONE);    // Previous configuration done
