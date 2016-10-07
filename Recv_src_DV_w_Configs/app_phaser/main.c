@@ -230,7 +230,7 @@ void print_echo_msg(echo_msg_t *e)
   int i;
   for(i=0;i<9;i++)
   {
-    PRINTF("%ld\t%d\t%d\t%d\t%d\t%d\n",(long)e->rxIdx[i],e->rssi[i],e->lqi[i],ant_cfg_p->angle,e->phaseA,e->phaseB);
+    PRINTF("%ld\t%d\t%d\t%d\t%d\t%d\n",(long)e->rxIdx[i],e->rssi[i],e->lqi[i],e->angle,e->phaseA,e->phaseB);
   }
 }
 

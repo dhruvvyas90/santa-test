@@ -78,8 +78,9 @@ int rxIdx=0;
 
 static bool flRestart=true;
 
-int phaseA;
-int phaseB;
+uint8_t phaseA;
+uint8_t phaseB;
+uint8_t angleI;
 
 // Prototypes
 void send_ctrl_msg(msg_action_t act);
@@ -137,6 +138,7 @@ void send_echo_msg()
   }
   echo_msg.payload.phaseA = phaseA;
   echo_msg.payload.phaseB = phaseB;
+  echo_msg.payload.angle = angleI;
   for(i=0;i<9;i++)
   {
     Srssi[i] = 0;
@@ -236,6 +238,7 @@ inline void processTestMsg(phaser_ping_t * test, rssi_t rssi, lqi_t lqi)
     exp->phase = test->ant.phaseA | test->ant.phaseB ;
     phaseA = test->ant.phaseA;
     phaseB = test->ant.phaseB;
+    angleI = exp->angle;
     STREAM_STAT_ADD(exp->rssi_data, rssi);
     STREAM_STAT_ADD(exp->lqi_data, lqi);
 

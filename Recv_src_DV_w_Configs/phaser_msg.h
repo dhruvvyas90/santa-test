@@ -204,6 +204,7 @@ typedef struct
   uint32_t rxIdx[9];
   uint8_t phaseA;
   uint8_t phaseB;
+  uint8_t angle;
 } __attribute__((packed))
 echo_msg_t;
 
