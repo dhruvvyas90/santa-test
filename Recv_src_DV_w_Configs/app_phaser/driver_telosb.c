@@ -33,11 +33,11 @@ test_config_t testSet[] = {
         .angle_step  = 5,
         .angle_count = 40,
         .ant.phaseA.start = 0,
-        .ant.phaseA.step  = 8,
-        .ant.phaseA.count = 32,
+        .ant.phaseA.step  = 32,
+        .ant.phaseA.count = 8,
         .ant.phaseB.start = 0,
-        .ant.phaseB.step  = 8,
-        .ant.phaseB.count = 32,
+        .ant.phaseB.step  = 32,
+        .ant.phaseB.count = 8,
         .power = {31, 0}
     },
     // {

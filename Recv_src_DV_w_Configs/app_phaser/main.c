@@ -399,6 +399,7 @@ bool test_next()
         ant_cfg_p->angle += test_config.angle_step;
         return true;
     }
+    PRINTF("Angle: %d\n",ant_cfg_p->angle);
 
     // Next test setup configuration
     send_ctrl_msg(MSG_ACT_DONE);    // Previous configuration done
