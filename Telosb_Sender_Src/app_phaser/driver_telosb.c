@@ -34,7 +34,7 @@ test_config_t testSet[] = {
         .angle_count = 40,
         .ant.phaseA.count = 0,
         .ant.phaseB.count = 0,
-        .power = {31, 0}
+        .power = {31,27,23,19,15,11,7,3,0}
     },
     //{
     //    .platform_id = PLATFORM_ID,     // Longer test
