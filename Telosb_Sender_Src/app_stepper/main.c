@@ -14,7 +14,7 @@
 
 
 #define DELAY_RATE 10      // mdelay between global loop iterations
-#define RADIO_CHANNEL 11
+#define RADIOCHANNEL 11
 
 // -------------------------------------------------------------------------
 // Types and global data
@@ -131,7 +131,7 @@ void appMain(void)
     stepperInit();
 
     radioSetReceiveHandle(onRadioRecv);
-    radioSetChannel(RADIO_CHANNEL);
+    radioSetChannel(RADIOCHANNEL);
     radioOn();
 
     stepperZero();
