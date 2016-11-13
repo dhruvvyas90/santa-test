@@ -273,8 +273,8 @@ void test_init()
 {
     // Init the test infrastructure
     lastAngle = ANGLE_NOT_SET_VALUE;    // Force stepper angle recalibration
-    set_angle( -20 );
-    set_angle( 0 );
+    //set_angle( -20 );
+    //set_angle( 0 );
 
     // Init the iterators
     testIdx.power.idx = 0;
@@ -364,7 +364,7 @@ void test_step()
     PRINTF("Do Send %d\n", (int)ant_cfg_p->expIdx);
 #endif
 
-    set_angle(ant_cfg_p->angle);
+    //set_angle(ant_cfg_p->angle);
 
     ant_test_setup(ant_cfg_p);
     radioSetTxPower(ant_cfg_p->power);
