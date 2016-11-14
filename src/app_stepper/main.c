@@ -14,7 +14,7 @@
 
 
 #define DELAY_RATE 10      // mdelay between global loop iterations
-#define RADIOCHANNEL 11
+#define RADIOCHANNEL 15
 
 // -------------------------------------------------------------------------
 // Types and global data
@@ -111,7 +111,7 @@ void onRadioRecv(void)
     switch( radioBuffer.id ){
     case PH_MSG_Angle:
         MSG_CHECK_FOR_PAYLOAD(radioBuffer, phaser_angle_t, flOK=false );
-        if( !flOK ){ flReceiving = false; return; }
+        //if( !flOK ){ flReceiving = false; return; }
 
         if( angle_data_p->action == MSG_ACT_SET ){
             newAngle = angle_data_p->angle;
