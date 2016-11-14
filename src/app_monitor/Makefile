@@ -26,17 +26,17 @@
 #
 #  The developer must define at least SOURCES and APPMOD in this file
 #
-#  In addition, PROJDIR and MOSROOT must be defined, before including 
+#  In addition, PROJDIR and MOSROOT must be defined, before including
 #  the main Makefile at ${MOSROOT}/mos/make/Makefile
 # --------------------------------------------------------------------
 
-SOURCES = main.c 
+SOURCES = main.c
 
 APPMOD = RxMonitor
 
 PROJDIR = $(CURDIR)
 ifndef MOSROOT
-  MOSROOT = /opt/MansOS
+  MOSROOT = ./../../../../../MansOS
 endif
 
 include ${MOSROOT}/mos/make/Makefile

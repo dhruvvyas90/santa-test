@@ -24,12 +24,12 @@
 #
 #  The developer must define at least SOURCES and APPMOD in this file
 #
-#  In addition, PROJDIR and MOSROOT must be defined, before including 
+#  In addition, PROJDIR and MOSROOT must be defined, before including
 #  the main Makefile at ${MOSROOT}/mos/make/Makefile
 # --------------------------------------------------------------------
 
 # Default USB port
-BSLPORT?=/dev/ttyUSB1
+BSLPORT?=/dev/ttyUSB0
 
 # Uncomment one of the sources below for the right antenna driver
 
@@ -42,7 +42,7 @@ APPMOD = PHASER
 
 PROJDIR = $(CURDIR)
 ifndef MOSROOT
-  MOSROOT = /opt/MansOS
+  MOSROOT = ./../../../../../MansOS
 endif
 
 include ${MOSROOT}/mos/make/Makefile

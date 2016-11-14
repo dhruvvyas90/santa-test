@@ -1,7 +1,7 @@
-/* 
+/*
  *  Santa stepper control for the rotating antenna mount
  */
-  
+
 #include "stdmansos.h"
 #include "stepper.h"
 #include "../phaser_msg.h"
@@ -14,7 +14,7 @@
 
 
 #define DELAY_RATE 10      // mdelay between global loop iterations
-
+#define RADIOCHANNEL 26
 
 // -------------------------------------------------------------------------
 // Types and global data
@@ -24,7 +24,7 @@
 // Define a buffer for receiving messages
 MSG_DEFINE_BUFFER_WITH_ID(radioBuffer, recv_data_p, RADIO_MAX_PACKET);
 
-// Flag for the request to change the angle 
+// Flag for the request to change the angle
 static bool fl_AngleProcessing = false;
 static angle_t newAngle = 0;
 
@@ -76,7 +76,7 @@ bool setAngle(int angle)
 // Incoming radio message handler
 // -------------------------------------------------------------------------
 static bool flReceiving=false;
-// - - - - - - - - - - - - - - - - - - - - - - 
+// - - - - - - - - - - - - - - - - - - - - - -
 void onRadioRecv(void)
 {
     bool flOK=true;
@@ -93,8 +93,8 @@ void onRadioRecv(void)
     len = MSG_RADIO_RECV(radioBuffer);
     if (len < 0) {
         stat.recvPktFailed ++;
-        flReceiving = false; 
-        return; 
+        flReceiving = false;
+        return;
     }
 
     //PRINTF("Len=%d\t", (int)len);
@@ -129,7 +129,7 @@ void onRadioRecv(void)
 void appMain(void)
 {
     stepperInit();
-
+    radioSetChannel(RADIOCHANNEL);
     radioSetReceiveHandle(onRadioRecv);
     radioOn();
 

@@ -26,12 +26,12 @@
 #
 #  The developer must define at least SOURCES and APPMOD in this file
 #
-#  In addition, PROJDIR and MOSROOT must be defined, before including 
+#  In addition, PROJDIR and MOSROOT must be defined, before including
 #  the main Makefile at ${MOSROOT}/mos/make/Makefile
 # --------------------------------------------------------------------
 
 # Default USB port
-BSLPORT?=/dev/ttyUSB2
+BSLPORT?=/dev/ttyUSB0
 
 SOURCES = main.c stepper.c
 # SOURCES += ${MOSROOT}/mos/lib/queue.c
@@ -40,7 +40,7 @@ APPMOD = Stepper
 
 PROJDIR = $(CURDIR)
 ifndef MOSROOT
-  MOSROOT = /opt/MansOS
+  MOSROOT = ./../../../../../MansOS
 endif
 
 include ${MOSROOT}/mos/make/Makefile
