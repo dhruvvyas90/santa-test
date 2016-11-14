@@ -104,8 +104,6 @@ void onRadioRecv(void)
 
     if( ! MSG_SIGNATURE_OK(radioBuffer) ) { flReceiving = false; return; }
 
-    led2Toggle();
-
     // Anticipated payload types.
     MSG_NEW_PAYLOAD_PTR(radioBuffer, phaser_angle_t, angle_data_p);
 
@@ -117,6 +115,7 @@ void onRadioRecv(void)
 
         if( angle_data_p->action == MSG_ACT_SET ){
             newAngle = angle_data_p->angle;
+            led2Toggle();
             fl_AngleProcessing = true; // set the angle at first convenience
         }
         break;
@@ -132,9 +131,7 @@ void appMain(void)
     radioSetChannel(RADIOCHANNEL);
     radioSetReceiveHandle(onRadioRecv);
     radioOn();
-
     stepperZero();
-
     while (1) {
         if( fl_AngleProcessing ){
             setAngle( newAngle );
