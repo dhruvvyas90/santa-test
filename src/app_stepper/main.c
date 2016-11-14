@@ -14,7 +14,7 @@
 
 
 #define DELAY_RATE 10      // mdelay between global loop iterations
-#define RADIOCHANNEL 26
+#define RADIOCHANNEL 11
 
 // -------------------------------------------------------------------------
 // Types and global data
