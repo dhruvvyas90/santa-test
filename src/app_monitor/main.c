@@ -15,7 +15,7 @@
 
 
 #define RATE_DELAY 200
-#define RADIOCHANNEL 19
+#define RADIOCHANNEL 26
 
 // Phaser control message(s)
 MSG_NEW_WITH_ID(ctrl_msg, phaser_control_t, PH_MSG_Control);
