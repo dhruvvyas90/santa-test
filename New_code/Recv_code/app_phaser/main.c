@@ -1,5 +1,5 @@
 // --------------------------------------------
-// Phaser node: digitally controlled beam forming
+// Phaser node: digitally controlled beam forming 
 // --------------------------------------------
 
 #include "stdmansos.h"
@@ -16,7 +16,6 @@
 
 #define RADIO_MAX_TX_POWER 31
 #define RADIO_BUF_PAYLOAD_LEN RADIO_MAX_PACKET
-#define RADIOCHANNEL 26
 
 
 //--- Test setup ----------------------
@@ -235,7 +234,7 @@ void onRadioRecv(void)
             break;
         }
         break;
-
+    
     case PH_MSG_Config:
         config_new(test_p);
         fl_test_restart = true;
@@ -280,7 +279,7 @@ void test_init()
     testIdx.angle.idx = 0;
     testIdx.angle.limit = test_config.angle_count;
 
-    // Init the antena configuration
+    // Init the antena configuration 
     ant_cfg_p->expIdx = 0;
     ant_cfg_p->msgCounter = 0;
     ant_cfg_p->angle = 0;
@@ -323,8 +322,8 @@ bool test_next()
     if( testIdx.power.idx < TEST_CONFIG_POWER_LIST_SIZE ){
         ant_cfg_p->power = test_config.power[testIdx.power.idx];
         if( ant_cfg_p->power > 0 ){
-            return true;
-        }
+            return true; 
+        }  
     }
     testIdx.power.idx = 0;
     ant_cfg_p->power = test_config.power[testIdx.power.idx];
@@ -401,7 +400,7 @@ void ledTestFinished()
         mdelay(100);
         ledOff();
         mdelay(100);
-    }
+    }    
     mdelay(500);
 }
 
@@ -415,23 +414,23 @@ void appMain(void)
 #endif
 
     ant_driver_init();
-    radioSetChannel(RADIOCHANNEL);
+
     radioSetReceiveHandle(onRadioRecv);
     radioOn();
 
-    fl_test_stop = false;
+    fl_test_stop = false;  
 
-    while(1)
+    while(1) 
     {
         config_init();  // Init the global configuration list
-
+    
         test_init();
         test_start();
-
+        
         mdelay_var( test_config.start_delay );
         fl_test_restart = false;
-
-        while( !fl_test_restart && !fl_test_stop )
+        
+        while( !fl_test_restart && !fl_test_stop ) 
         {
             ledToggle();
 
@@ -444,14 +443,14 @@ void appMain(void)
             if( ant_check_button() ) fl_test_restart = true;
         }
         // Test done!
-        continue;
-        while( !fl_test_restart || fl_test_stop )
+
+        while( !fl_test_restart || fl_test_stop ) 
         {
             ledTestFinished();
             if( ant_check_button() ){
                 fl_test_restart = true;
-                fl_test_stop = false;
-            }
+                fl_test_stop = false;  
+            } 
         }
     }
 }

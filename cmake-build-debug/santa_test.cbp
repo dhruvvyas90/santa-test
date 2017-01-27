@@ -1,0 +1,704 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="santa_test"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/dhruvvyas/Documents/Github/santa-test/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/dhruvvyas/Documents/Github/santa-test/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/dhruvvyas/Documents/Github/santa-test/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/dhruvvyas/Documents/Github/santa-test/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/dhruvvyas/Documents/Github/santa-test/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/dhruvvyas/Documents/Github/santa-test/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/dhruvvyas/Documents/Github/santa-test/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/dhruvvyas/Documents/Github/santa-test/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/dhruvvyas/Documents/Github/santa-test/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/dhruvvyas/Documents/Github/santa-test/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/dhruvvyas/Documents/Github/santa-test/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/dhruvvyas/Documents/Github/santa-test/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/dhruvvyas/Documents/Github/santa-test/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/dhruvvyas/Documents/Github/santa-test/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/dhruvvyas/Documents/Github/santa-test/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="santa_test">
+				<Option output="/Users/dhruvvyas/Documents/Github/santa-test/cmake-build-debug/santa_test" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/dhruvvyas/Documents/Github/santa-test/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/dhruvvyas/Documents/Github/santa-test/cmake-build-debug/Makefile&quot;  VERBOSE=1 santa_test"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/dhruvvyas/Documents/Github/santa-test/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/dhruvvyas/Documents/Github/santa-test/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/dhruvvyas/Documents/Github/santa-test/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="santa_test/fast">
+				<Option output="/Users/dhruvvyas/Documents/Github/santa-test/cmake-build-debug/santa_test" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/dhruvvyas/Documents/Github/santa-test/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/dhruvvyas/Documents/Github/santa-test/cmake-build-debug/Makefile&quot;  VERBOSE=1 santa_test/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/dhruvvyas/Documents/Github/santa-test/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/dhruvvyas/Documents/Github/santa-test/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/dhruvvyas/Documents/Github/santa-test/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/New_code/Recv_code/app_monitor/main.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/New_code/Recv_code/app_monitor/main_buffered.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/New_code/Recv_code/app_phaser/antenna_driver.h">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/New_code/Recv_code/app_phaser/driver_phaser.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/New_code/Recv_code/app_phaser/driver_phaserTx.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/New_code/Recv_code/app_phaser/driver_santa.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/New_code/Recv_code/app_phaser/driver_telosb.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/New_code/Recv_code/app_phaser/main.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/New_code/Recv_code/app_stepper/main.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/New_code/Recv_code/app_stepper/stepper.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/New_code/Recv_code/app_stepper/stepper.h">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/New_code/Recv_code/phaser_msg.h">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/New_code/src/app_monitor/main.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/New_code/src/app_monitor/main_buffered.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/New_code/src/app_phaser/antenna_driver.h">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/New_code/src/app_phaser/driver_phaser.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/New_code/src/app_phaser/driver_phaserTx.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/New_code/src/app_phaser/driver_santa.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/New_code/src/app_phaser/driver_telosb.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/New_code/src/app_phaser/main.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/New_code/src/app_stepper/main.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/New_code/src/app_stepper/stepper.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/New_code/src/app_stepper/stepper.h">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/New_code/src/phaser_msg.h">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/RP_Channel26/app_monitor/main.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/RP_Channel26/app_monitor/main_buffered.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/RP_Channel26/app_phaser/antenna_driver.h">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/RP_Channel26/app_phaser/driver_phaser.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/RP_Channel26/app_phaser/driver_phaserTx.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/RP_Channel26/app_phaser/driver_santa.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/RP_Channel26/app_phaser/driver_telosb.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/RP_Channel26/app_phaser/main.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/RP_Channel26/app_stepper/main.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/RP_Channel26/app_stepper/stepper.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/RP_Channel26/app_stepper/stepper.h">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/RP_Channel26/phaser_msg.h">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Recv_src/app_monitor/main.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Recv_src/app_monitor/main_buffered.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Recv_src/app_phaser/antenna_driver.h">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Recv_src/app_phaser/driver_phaser.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Recv_src/app_phaser/driver_phaserTx.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Recv_src/app_phaser/driver_santa.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Recv_src/app_phaser/driver_telosb.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Recv_src/app_phaser/main.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Recv_src/app_stepper/main.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Recv_src/app_stepper/stepper.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Recv_src/app_stepper/stepper.h">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Recv_src/phaser_msg.h">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Recv_src_DV/app_monitor/main.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Recv_src_DV/app_monitor/main_buffered.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Recv_src_DV/app_phaser/antenna_driver.h">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Recv_src_DV/app_phaser/driver_phaser.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Recv_src_DV/app_phaser/driver_phaserTx.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Recv_src_DV/app_phaser/driver_santa.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Recv_src_DV/app_phaser/driver_telosb.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Recv_src_DV/app_phaser/main.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Recv_src_DV/app_stepper/main.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Recv_src_DV/app_stepper/stepper.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Recv_src_DV/app_stepper/stepper.h">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Recv_src_DV/phaser_msg.h">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Recv_src_DV_w_Configs/app_monitor/main.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Recv_src_DV_w_Configs/app_monitor/main_buffered.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Recv_src_DV_w_Configs/app_phaser/antenna_driver.h">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Recv_src_DV_w_Configs/app_phaser/driver_phaser.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Recv_src_DV_w_Configs/app_phaser/driver_phaserTx.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Recv_src_DV_w_Configs/app_phaser/driver_santa.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Recv_src_DV_w_Configs/app_phaser/driver_telosb.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Recv_src_DV_w_Configs/app_phaser/main.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Recv_src_DV_w_Configs/app_stepper/main.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Recv_src_DV_w_Configs/app_stepper/stepper.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Recv_src_DV_w_Configs/app_stepper/stepper.h">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Recv_src_DV_w_Configs/phaser_msg.h">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Recv_src_DV_w_Configs_11_7/app_monitor/main.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Recv_src_DV_w_Configs_11_7/app_monitor/main_buffered.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Recv_src_DV_w_Configs_11_7/app_phaser/antenna_driver.h">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Recv_src_DV_w_Configs_11_7/app_phaser/driver_phaser.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Recv_src_DV_w_Configs_11_7/app_phaser/driver_phaserTx.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Recv_src_DV_w_Configs_11_7/app_phaser/driver_santa.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Recv_src_DV_w_Configs_11_7/app_phaser/driver_telosb.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Recv_src_DV_w_Configs_11_7/app_phaser/main.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Recv_src_DV_w_Configs_11_7/app_stepper/main.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Recv_src_DV_w_Configs_11_7/app_stepper/stepper.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Recv_src_DV_w_Configs_11_7/app_stepper/stepper.h">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Recv_src_DV_w_Configs_11_7/phaser_msg.h">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Telosb_Sender_Phaser_Recv_Src/app_monitor/main.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Telosb_Sender_Phaser_Recv_Src/app_monitor/main_buffered.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Telosb_Sender_Phaser_Recv_Src/app_phaser/antenna_driver.h">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Telosb_Sender_Phaser_Recv_Src/app_phaser/driver_phaser.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Telosb_Sender_Phaser_Recv_Src/app_phaser/driver_phaserTx.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Telosb_Sender_Phaser_Recv_Src/app_phaser/driver_santa.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Telosb_Sender_Phaser_Recv_Src/app_phaser/driver_telosb.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Telosb_Sender_Phaser_Recv_Src/app_phaser/main.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Telosb_Sender_Phaser_Recv_Src/app_stepper/main.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Telosb_Sender_Phaser_Recv_Src/app_stepper/stepper.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Telosb_Sender_Phaser_Recv_Src/app_stepper/stepper.h">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Telosb_Sender_Phaser_Recv_Src/phaser_msg.h">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Telosb_Sender_Src/app_monitor/main.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Telosb_Sender_Src/app_monitor/main_buffered.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Telosb_Sender_Src/app_phaser/antenna_driver.h">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Telosb_Sender_Src/app_phaser/driver_phaser.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Telosb_Sender_Src/app_phaser/driver_phaserTx.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Telosb_Sender_Src/app_phaser/driver_santa.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Telosb_Sender_Src/app_phaser/driver_telosb.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Telosb_Sender_Src/app_phaser/main.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Telosb_Sender_Src/app_stepper/main.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Telosb_Sender_Src/app_stepper/stepper.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Telosb_Sender_Src/app_stepper/stepper.h">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Telosb_Sender_Src/phaser_msg.h">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Test_1_09192016/app_monitor/main.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Test_1_09192016/app_monitor/main_buffered.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Test_1_09192016/app_phaser/antenna_driver.h">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Test_1_09192016/app_phaser/driver_phaser.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Test_1_09192016/app_phaser/driver_phaserTx.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Test_1_09192016/app_phaser/driver_santa.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Test_1_09192016/app_phaser/driver_telosb.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Test_1_09192016/app_phaser/main.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Test_1_09192016/app_stepper/main.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Test_1_09192016/app_stepper/stepper.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Test_1_09192016/app_stepper/stepper.h">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Test_1_09192016/phaser_msg.h">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Test_1_Channel_11_09222016/app_monitor/main.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Test_1_Channel_11_09222016/app_monitor/main_buffered.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Test_1_Channel_11_09222016/app_phaser/antenna_driver.h">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Test_1_Channel_11_09222016/app_phaser/driver_phaser.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Test_1_Channel_11_09222016/app_phaser/driver_phaserTx.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Test_1_Channel_11_09222016/app_phaser/driver_santa.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Test_1_Channel_11_09222016/app_phaser/driver_telosb.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Test_1_Channel_11_09222016/app_phaser/main.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Test_1_Channel_11_09222016/app_stepper/main.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Test_1_Channel_11_09222016/app_stepper/stepper.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Test_1_Channel_11_09222016/app_stepper/stepper.h">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Test_1_Channel_11_09222016/phaser_msg.h">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Test_1_Channel_11_09232016/app_monitor/main.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Test_1_Channel_11_09232016/app_monitor/main_buffered.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Test_1_Channel_11_09232016/app_phaser/antenna_driver.h">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Test_1_Channel_11_09232016/app_phaser/driver_phaser.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Test_1_Channel_11_09232016/app_phaser/driver_phaserTx.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Test_1_Channel_11_09232016/app_phaser/driver_santa.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Test_1_Channel_11_09232016/app_phaser/driver_telosb.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Test_1_Channel_11_09232016/app_phaser/main.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Test_1_Channel_11_09232016/app_stepper/main.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Test_1_Channel_11_09232016/app_stepper/stepper.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Test_1_Channel_11_09232016/app_stepper/stepper.h">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Test_1_Channel_11_09232016/phaser_msg.h">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Test_2_09192016/app_monitor/main.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Test_2_09192016/app_monitor/main_buffered.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Test_2_09192016/app_phaser/antenna_driver.h">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Test_2_09192016/app_phaser/driver_phaser.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Test_2_09192016/app_phaser/driver_phaserTx.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Test_2_09192016/app_phaser/driver_santa.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Test_2_09192016/app_phaser/driver_telosb.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Test_2_09192016/app_phaser/main.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Test_2_09192016/app_stepper/main.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Test_2_09192016/app_stepper/stepper.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Test_2_09192016/app_stepper/stepper.h">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/Test_2_09192016/phaser_msg.h">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/phase-tests-random/app_monitor/main.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/phase-tests-random/app_monitor/main_buffered.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/phase-tests-random/app_phaser/antenna_driver.h">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/phase-tests-random/app_phaser/driver_phaser.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/phase-tests-random/app_phaser/driver_phaserTx.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/phase-tests-random/app_phaser/driver_santa.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/phase-tests-random/app_phaser/driver_telosb.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/phase-tests-random/app_phaser/main.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/phase-tests-random/app_stepper/main.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/phase-tests-random/app_stepper/stepper.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/phase-tests-random/app_stepper/stepper.h">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/phase-tests-random/phaser_msg.h">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/phase-tests/app_monitor/main.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/phase-tests/app_monitor/main_buffered.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/phase-tests/app_phaser/antenna_driver.h">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/phase-tests/app_phaser/driver_phaser.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/phase-tests/app_phaser/driver_phaserTx.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/phase-tests/app_phaser/driver_santa.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/phase-tests/app_phaser/driver_telosb.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/phase-tests/app_phaser/main.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/phase-tests/app_stepper/main.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/phase-tests/app_stepper/stepper.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/phase-tests/app_stepper/stepper.h">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/phase-tests/phaser_msg.h">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/print-pkt-exp-src/app_monitor/main.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/print-pkt-exp-src/app_monitor/main_buffered.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/print-pkt-exp-src/app_phaser/antenna_driver.h">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/print-pkt-exp-src/app_phaser/driver_phaser.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/print-pkt-exp-src/app_phaser/driver_phaserTx.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/print-pkt-exp-src/app_phaser/driver_santa.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/print-pkt-exp-src/app_phaser/driver_telosb.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/print-pkt-exp-src/app_phaser/main.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/print-pkt-exp-src/app_stepper/main.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/print-pkt-exp-src/app_stepper/stepper.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/print-pkt-exp-src/app_stepper/stepper.h">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/print-pkt-exp-src/phaser_msg.h">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/src/app_monitor/main.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/src/app_monitor/main_buffered.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/src/app_phaser/antenna_driver.h">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/src/app_phaser/driver_phaser.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/src/app_phaser/driver_phaserTx.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/src/app_phaser/driver_santa.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/src/app_phaser/driver_telosb.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/src/app_phaser/main.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/src/app_stepper/main.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/src/app_stepper/stepper.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/src/app_stepper/stepper.h">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/src/phaser_msg.h">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/test_cases/printf_test/main.c">
+			<Option target="santa_test"/>
+		</Unit>
+		<Unit filename="/Users/dhruvvyas/Documents/Github/santa-test/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
