@@ -9,12 +9,16 @@
 #include "stdmansos.h"
 #include "../phaser_msg.h"
 #include "../db_framework.h"
+#include "phaser_hw.h"
 
 // Comment below for less output
 // #define PRINT_PACKETS 1
 
 
 #define RATE_DELAY 200
+#define MAX_NO_OF_PACKET 100
+#define RADIOCHANNEL 26
+#define RADIO_MAX_TX_POWER 31
 
 // Phaser control message(s)
 MSG_NEW_WITH_ID(ctrl_msg, phaser_control_t, PH_MSG_Control);
@@ -22,6 +26,12 @@ phaser_control_t *ctrl_data_p = &(ctrl_msg.payload);
 
 // Define a buffer for receiving messages
 MSG_DEFINE_BUFFER_WITH_ID(radioBuffer, recv_data_p, RADIO_MAX_PACKET);
+
+//phaser done msg
+MSG_NEW_WITH_ID(echo_msg, echo_msg_t, PH_MSG_Echo);
+
+//phaser info msg
+
 
 
 // --------------------------------------------
@@ -47,7 +57,10 @@ test_config_t test_config = {
     },
 };
 
-
+int8_t Srssi[MAX_NO_OF_PACKET];
+int8_t Slqi[MAX_NO_OF_PACKET];
+uint32_t Srxid[MAX_NO_OF_PACKET];
+int packet_count = 0;
 
 
 
@@ -65,8 +78,9 @@ int rxIdx=0;
 
 static bool flRestart=true;
 
-int phaseA;
-int phaseB;
+uint8_t phaseA;
+uint8_t phaseB;
+uint8_t angleI;
 
 // Prototypes
 void send_ctrl_msg(msg_action_t act);
@@ -96,6 +110,13 @@ void onSerRecv(uint8_t bytes)
 
 }
 
+void ant_setup(info_msg_t *cfg_p)
+{
+    PHASER_A_SET(cfg_p->phaseA);
+    PHASER_B_SET(cfg_p->phaseB);
+    PHASER_WAIT_SETTLE();
+}
+
 
 // --------------------------------------------
 // --------------------------------------------
@@ -104,6 +125,34 @@ void send_ctrl_msg(msg_action_t act)
     ctrl_msg.payload.action = act;
     MSG_DO_CHECKSUM( ctrl_msg );
     MSG_RADIO_SEND( ctrl_msg );
+}
+
+void send_echo_msg()
+{
+  int i;
+  for(i=0;i<9;i++)
+  {
+    echo_msg.payload.rssi[i] = Srssi[i];
+    echo_msg.payload.lqi[i] = Slqi[i];
+    echo_msg.payload.rxIdx[i] = Srxid[i];
+  }
+  echo_msg.payload.phaseA = phaseA;
+  echo_msg.payload.phaseB = phaseB;
+  echo_msg.payload.angle = angleI;
+  for(i=0;i<9;i++)
+  {
+    Srssi[i] = 0;
+    Slqi[i] = 0;
+    Srxid[i] = 0;
+  }
+  MSG_DO_CHECKSUM( echo_msg );
+  // Send 3 times for reliability.
+  radioSetTxPower(RADIO_MAX_TX_POWER);
+  mdelay(20);
+  //for(i=0; i<3; i++){
+  MSG_RADIO_SEND(echo_msg);
+  mdelay(100);
+  //}
 }
 
 // --------------------------------------------
@@ -125,36 +174,36 @@ void sendTestResults()
         rssi_devSq = STREAM_STAT_DEVIATION_SQUARED(exp->rssi_data);
         lqi_mean = STREAM_STAT_MEAN(exp->lqi_data);
         lqi_devSq = STREAM_STAT_DEVIATION_SQUARED(exp->lqi_data);
-        PRINTF("Test:"
-            "\t%d"
-            "\t%d\t%d\t%d"
-            // "\t%d\t%d\t%d\t%d\t%ld"
-            // "\t%d\t%d\t%d\t%d\t%ld"
-            "\t%d\t%d\t%d"
-            "\t%ld\t%ld"
-            //"\t%d\t%d"
-            "\n",
-            (int) lastExpIdx,
-
-            (int) exp->power,
-            (int) exp->angle,
-            (int) exp->phase,
-
-            // (int) exp->rssi_data.sum,
-            // (int) exp->rssi_data.sum_squares,
-
-            // (int) exp->lqi_data.num,
-            // (int) exp->lqi_data.sum,
-            // (int) exp->lqi_data.sum_squares,
-
-            (int) exp->rssi_data.num,
-            (int) rssi_mean,
-            (int) lqi_mean,
-            (long unsigned int) (rssi_devSq),
-            (long unsigned int) (lqi_devSq)
-            //(int) phaseA,
-            //(int) phaseB
-            )
+        // PRINTF("Test:"
+        //     "\t%d"
+        //     "\t%d\t%d\t%d"
+        //     // "\t%d\t%d\t%d\t%d\t%ld"
+        //     // "\t%d\t%d\t%d\t%d\t%ld"
+        //     "\t%d\t%d\t%d"
+        //     "\t%ld\t%ld"
+        //     "\t%d\t%d"
+        //     "\n",
+        //     (int) lastExpIdx,
+        //
+        //     (int) exp->power,
+        //     (int) exp->angle,
+        //     (int) exp->phase,
+        //
+        //     // (int) exp->rssi_data.sum,
+        //     // (int) exp->rssi_data.sum_squares,
+        //
+        //     // (int) exp->lqi_data.num,
+        //     // (int) exp->lqi_data.sum,
+        //     // (int) exp->lqi_data.sum_squares,
+        //
+        //     (int) exp->rssi_data.num,
+        //     (int) rssi_mean,
+        //     (int) lqi_mean,
+        //     (long unsigned int) (rssi_devSq),
+        //     (long unsigned int) (lqi_devSq),
+        //     (int) phaseA,
+        //     (int) phaseB
+        //     )
         // debugHexdump((uint8_t *) exp, sizeof(experiment_t));
 
         // Clear data
@@ -189,6 +238,7 @@ inline void processTestMsg(phaser_ping_t * test, rssi_t rssi, lqi_t lqi)
     exp->phase = test->ant.phaseA | test->ant.phaseB ;
     phaseA = test->ant.phaseA;
     phaseB = test->ant.phaseB;
+    angleI = exp->angle;
     STREAM_STAT_ADD(exp->rssi_data, rssi);
     STREAM_STAT_ADD(exp->lqi_data, lqi);
 
@@ -295,6 +345,7 @@ void onRadioRecv(void)
     MSG_NEW_PAYLOAD_PTR(radioBuffer, phaser_control_t, ctrl_data_p);
     MSG_NEW_PAYLOAD_PTR(radioBuffer, msg_text_data_t, msg_text_p);
     MSG_NEW_PAYLOAD_PTR(radioBuffer, test_config_t, test_config_p);
+    MSG_NEW_PAYLOAD_PTR(radioBuffer, info_msg_t, info_msg_p);
 
     int act = MSG_ACT_CLEAR;
     bool flOK=true;
@@ -309,6 +360,14 @@ void onRadioRecv(void)
         // Check if new experiment iteration started.
         if(lastExpIdx != test_data_p->expIdx && curExp){
             sendTestResults();
+        }
+        Srssi[packet_count] = rssi;
+        Slqi[packet_count] = lqi;
+        Srxid[packet_count] = rxIdx;
+        packet_count++;
+        if(packet_count > MAX_NO_OF_PACKET)
+        {
+          packet_count = 0;
         }
         processTestMsg(test_data_p, rssi, lqi);
         break;
@@ -343,6 +402,16 @@ void onRadioRecv(void)
         PRINTF("Config received:\n");
         // TODO: parse the config and print
         print_test_config(test_config_p);
+        break;
+
+    case PH_MSG_Done:
+        send_echo_msg();
+        packet_count = 0;
+        break;
+
+    case PH_MSG_Info:
+        ant_setup(info_msg_p);
+        break;
     }
 
 
@@ -356,7 +425,7 @@ void appMain(void)
     serialEnableRX(PRINTF_SERIAL_ID);
     // serialSetReceiveHandle(PRINTF_SERIAL_ID, onSerRecv);
     serialSetPacketReceiveHandle(PRINTF_SERIAL_ID, onSerRecv, serBuffer, SER_BUF_SIZE);
-
+    radioSetChannel(RADIOCHANNEL);
     radioSetReceiveHandle(onRadioRecv);
     radioOn();
     mdelay(200);

@@ -38,7 +38,7 @@ BSLPORT?=/dev/ttyUSB0
 # SOURCES = main.c driver_santa.c
 SOURCES = main.c driver_telosb.c
 
-APPMOD = TelosSender
+APPMOD = PHASER
 
 PROJDIR = $(CURDIR)
 ifndef MOSROOT

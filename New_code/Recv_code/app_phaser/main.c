@@ -1,5 +1,5 @@
 // --------------------------------------------
-// Phaser node: digitally controlled beam forming 
+// Phaser node: digitally controlled beam forming
 // --------------------------------------------
 
 #include "stdmansos.h"
@@ -16,6 +16,7 @@
 
 #define RADIO_MAX_TX_POWER 31
 #define RADIO_BUF_PAYLOAD_LEN RADIO_MAX_PACKET
+#define RADIOCHANNEL 26
 
 
 //--- Test setup ----------------------
@@ -57,6 +58,11 @@ MSG_NEW_WITH_ID(config_msg, test_config_t, PH_MSG_Config);
 // Phaser test configuration message
 MSG_NEW_WITH_ID(text_msg, msg_text_data_t, PH_MSG_Text);
 
+//phaser done msg
+MSG_NEW_WITH_ID(done_msg, done_msg_t, PH_MSG_Done);
+
+//phase info msg
+MSG_NEW_WITH_ID(info_msg,info_msg_t,PH_MSG_Info);
 
 // -------------------------------------------------------------------------
 // Delay in ms, using a variable instead of constant.
@@ -142,6 +148,39 @@ void send_ctrl_msg(msg_action_t act)
     }
 }
 
+//--------------------------------------------------------------------------
+//--------------------------------------------------------------------------
+
+void send_done_msg(uint8_t data)
+{
+  int i;
+  done_msg.payload.done = data;
+  MSG_DO_CHECKSUM( done_msg );
+  // Send 3 times for reliability.
+  radioSetTxPower(RADIO_MAX_TX_POWER);
+  mdelay(20);
+  //for(i=0; i<3; i++){
+  MSG_RADIO_SEND(done_msg);
+  mdelay(100);
+  //}
+}
+
+//--------------------------------------------------------------------------
+//--------------------------------------------------------------------------
+
+void send_info_msg(uint8_t phase_A, uint8_t phase_B)
+{
+    info_msg.payload.phaseA = phase_A;
+    info_msg.payload.phaseB = phase_B;
+    MSG_DO_CHECKSUM( done_msg );
+    // Send 3 times for reliability.
+    radioSetTxPower(RADIO_MAX_TX_POWER);
+    mdelay(20);
+    //for(i=0; i<3; i++){
+    MSG_RADIO_SEND(info_msg);
+    mdelay(100);
+}
+
 // -------------------------------------------------------------------------
 // -------------------------------------------------------------------------
 void send_string(char *str)
@@ -149,7 +188,6 @@ void send_string(char *str)
     int len = strlen(str);
     if(len>0 && len<MSG_TEXT_SIZE_MAX-1){
         memcpy(text_msg.payload.text, str, len);
-
         radioSetTxPower(RADIO_MAX_TX_POWER);
         MSG_RADIO_SEND( text_msg );
     }
@@ -184,6 +222,18 @@ void test_stop()
     send_ctrl_msg(MSG_ACT_IDLE);
 }
 
+//------
+//------
+
+void print_echo_msg(echo_msg_t *e)
+{
+  int i;
+  for(i=0;i<9;i++)
+  {
+    PRINTF("%ld\t%d\t%d\t%d\t%d\t%d\n",(long)e->rxIdx[i],e->rssi[i],e->lqi[i],e->angle,e->phaseA,e->phaseB);
+  }
+}
+
 // -------------------------------------------------------------------------
 //  Radio reveive handler
 // -------------------------------------------------------------------------
@@ -210,6 +260,7 @@ void onRadioRecv(void)
     MSG_NEW_PAYLOAD_PTR(radioBuffer, phaser_angle_t, angle_p);
     MSG_NEW_PAYLOAD_PTR(radioBuffer, phaser_control_t, control_p);
     MSG_NEW_PAYLOAD_PTR(radioBuffer, test_config_t, test_p);
+    MSG_NEW_PAYLOAD_PTR(radioBuffer, echo_msg_t, echo_p);
 
 
     switch( radioBuffer.id ){
@@ -234,11 +285,17 @@ void onRadioRecv(void)
             break;
         }
         break;
-    
+
     case PH_MSG_Config:
         config_new(test_p);
         fl_test_restart = true;
         break;
+
+    case PH_MSG_Echo:
+        print_echo_msg(echo_p);
+        mdelay(1000);
+        break;
+
     }
     // Rx processing done
     flRxProcessing=false;
@@ -279,7 +336,7 @@ void test_init()
     testIdx.angle.idx = 0;
     testIdx.angle.limit = test_config.angle_count;
 
-    // Init the antena configuration 
+    // Init the antena configuration
     ant_cfg_p->expIdx = 0;
     ant_cfg_p->msgCounter = 0;
     ant_cfg_p->angle = 0;
@@ -322,8 +379,8 @@ bool test_next()
     if( testIdx.power.idx < TEST_CONFIG_POWER_LIST_SIZE ){
         ant_cfg_p->power = test_config.power[testIdx.power.idx];
         if( ant_cfg_p->power > 0 ){
-            return true; 
-        }  
+            return true;
+        }
     }
     testIdx.power.idx = 0;
     ant_cfg_p->power = test_config.power[testIdx.power.idx];
@@ -341,6 +398,7 @@ bool test_next()
     }
     else {
         ant_cfg_p->angle += test_config.angle_step;
+        //PRINTF("Angle: %d\n",ant_cfg_p->angle);
         return true;
     }
 
@@ -363,8 +421,8 @@ void test_step()
 #endif
 
     set_angle(ant_cfg_p->angle);
-
     ant_test_setup(ant_cfg_p);
+    send_info_msg(ant_cfg_p->ant.phaseA,ant_cfg_p->ant.phaseB);
     radioSetTxPower(ant_cfg_p->power);
 
     for(i=0; i<test_config.send_count; i++)
@@ -400,7 +458,7 @@ void ledTestFinished()
         mdelay(100);
         ledOff();
         mdelay(100);
-    }    
+    }
     mdelay(500);
 }
 
@@ -414,43 +472,44 @@ void appMain(void)
 #endif
 
     ant_driver_init();
-
+    radioSetChannel(RADIOCHANNEL);
     radioSetReceiveHandle(onRadioRecv);
     radioOn();
 
-    fl_test_stop = false;  
+    fl_test_stop = false;
 
-    while(1) 
+    while(1)
     {
         config_init();  // Init the global configuration list
-    
+
         test_init();
         test_start();
-        
+
         mdelay_var( test_config.start_delay );
         fl_test_restart = false;
-        
-        while( !fl_test_restart && !fl_test_stop ) 
+
+        while( !fl_test_restart && !fl_test_stop )
         {
             ledToggle();
-
             test_step();
+            send_done_msg(1);
+            mdelay(1000);
             if( ! test_next() ){
                 send_ctrl_msg(MSG_ACT_DONE);
                 break;
             }
-
             if( ant_check_button() ) fl_test_restart = true;
         }
         // Test done!
+        continue;
 
-        while( !fl_test_restart || fl_test_stop ) 
+        while( !fl_test_restart || fl_test_stop )
         {
             ledTestFinished();
             if( ant_check_button() ){
                 fl_test_restart = true;
-                fl_test_stop = false;  
-            } 
+                fl_test_stop = false;
+            }
         }
     }
 }
