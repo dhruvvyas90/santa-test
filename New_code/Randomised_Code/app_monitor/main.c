@@ -16,7 +16,7 @@
 
 #define RATE_DELAY 200
 #define MAX_NO_PACKETS_IN_TEST 100
-#define RADIOCHANNEL 11
+#define RADIOCHANNEL 26
 
 // Phaser control message(s)
 MSG_NEW_WITH_ID(ctrl_msg, phaser_control_t, PH_MSG_Control);

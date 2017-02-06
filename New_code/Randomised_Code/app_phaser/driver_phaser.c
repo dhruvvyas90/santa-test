@@ -50,7 +50,7 @@ test_config_t testSet[] = {
         .ant.phaseB.start = 0,
         .ant.phaseB.step  = 32,
         .ant.phaseB.count = 8,
-        .power = {7, 0}
+        .power = {31, 0}
     },
     // {
     //     .platform_id = PLATFORM_ID,     // Longer test
@@ -184,7 +184,7 @@ bool ant_test_next_config(test_loop_t *testIdx, test_config_t *test_config, phas
     // Next phase
     if(test_config->ant.phaseA.count){
         //timeRand = getTimeMs();
-        rand1 = o_rand() % rand_b_count;
+        rand1 = o_rand() % rand_a_count;
         testIdx->phaseA.idx++;
         if( testIdx->phaseA.idx >= testIdx->phaseA.limit ){
             testIdx->phaseA.idx = 0;
